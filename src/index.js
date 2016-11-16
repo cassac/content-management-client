@@ -1,6 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
+import App from './components/App';
 
-const App = () => <div>Hello World</div>;
-
-render(<App />, document.getElementById('app'));
+render(
+  <Router history={browserHistory}>
+    <Route path='/' component={App}>
+    </Route>
+  </Router>, 
+  document.getElementById('app')
+);
