@@ -5,7 +5,7 @@ import App from './components/App';
 
 render(
   <Router history={browserHistory}>
-    <Route path='/' component={App}>
+    <Route path='/dashboard' component={App}>
     </Route>
   </Router>, 
   document.getElementById('app')
