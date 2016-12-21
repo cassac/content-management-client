@@ -3,10 +3,12 @@ import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import storeConfig from './reducers';
 import App from './components/App';
 import UsersDashboard from './containers/UsersDashboard';
 
-const store = persistStore(configureStore());
+const store = storeConfig();
+persistStore(store);
 
 render(
   <Provider store={store}>
