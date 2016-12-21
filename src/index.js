@@ -4,8 +4,8 @@ import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import storeConfig from './reducers';
-import App from './components/App';
-import UsersDashboard from './containers/UsersDashboard';
+import App from './modules/common/components/App';
+import UsersDashboard from './modules/users/components/Dashboard';
 
 const store = storeConfig();
 persistStore(store);

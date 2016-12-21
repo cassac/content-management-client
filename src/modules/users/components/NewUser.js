@@ -6,13 +6,12 @@ const NewUser = () => {
     <div>
       <Button 
         bsStyle="primary"
-        bsSize="large"
         onClick={ () => {console.log('new user')} }
       >
         <Glyphicon glyph="plus" />
         Create new user
       </Button>
-      <Modal show={true} onHide={ () => {console.log('hide modal')} }>
+      <Modal show={false} onHide={ () => {console.log('hide modal')} }>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
