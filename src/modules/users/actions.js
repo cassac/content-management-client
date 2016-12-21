@@ -1,5 +1,5 @@
 import axios from 'axios';
-import types from 'actionTypes';
+import types from './actionTypes';
 
 export const getUserData = (query) => {
   return (dispatch) => {
