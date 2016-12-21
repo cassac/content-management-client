@@ -6,11 +6,12 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import { autoRehydrate } from 'redux-persist';
-import usersReducer from './modules/users/reducers';
+import { users } from './modules/users/reducers/index';
 
 const rootReducer = combineReducers({
-  users: usersReducer
+  users
 });
+
 
 const storeConfig = (initialState) => {
   return createStore(
