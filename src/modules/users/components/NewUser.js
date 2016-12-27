@@ -1,31 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { toggleNewUserModal } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
-const NewUser = () => {
-  return (
-    <div>
-      <Button 
-        bsStyle="primary"
-        onClick={ () => {console.log('new user')} }
-      >
-        <Glyphicon glyph="plus" />
-        Create new user
-      </Button>
-      <Modal show={false} onHide={ () => {console.log('hide modal')} }>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>Create a new user</h4>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-          <hr />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={ () => { console.log('hide modal button')} }>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-  )
+class NewUser extends Component {
+  render() {
+    return (
+      <div>
+        <Button 
+          bsStyle="primary"
+          onClick={ this.props.onModalClick }
+        >
+          <Glyphicon glyph="plus" />
+          Create new user
+        </Button>
+        <Modal 
+          show={this.props.users.newUserModalOpen} 
+          onHide={ this.props.onModalClick }
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Create a new user</h4>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+            <hr />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={ this.props.onModalClick }>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    )
+  }
 }
 
-export default NewUser;
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onModalClick: () => {
+      dispatch(toggleNewUserModal());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewUser);
