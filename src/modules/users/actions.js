@@ -1,6 +1,12 @@
 import axios from 'axios';
 import types from './actionTypes';
 
+export const toggleNewUserModal = () => {
+  return {
+    type: types.NEW_USER_MODAL_OPEN
+  }
+}
+
 export const getUserData = (query) => {
   return (dispatch) => {
     axios.get('api/users')
