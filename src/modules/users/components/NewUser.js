@@ -12,7 +12,7 @@ class NewUser extends Component {
           onClick={ this.props.onModalClick }
         >
           <Glyphicon glyph="plus" />
-          Create new user
+          Create user
         </Button>
         <Modal 
           show={this.props.users.newUserModalOpen} 
