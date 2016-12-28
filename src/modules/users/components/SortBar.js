@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { sortUsersBy } from '../actions';
 import { userSearchCriteria } from '../../../config.js';
 import { Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
