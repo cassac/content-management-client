@@ -7,14 +7,10 @@ const initialState = {
 
 const sortUsers = (state = initialState, action) => {
   switch (action.type) {
-    case types.SORT_USERS_BY_CRITERIA:
+    case types.SORT_USERS_BY:
       return {
         ...state,
-        criteria: action.criteria
-      };
-    case types.SORT_USERS_BY_DIRECTION:
-      return {
-        ...state,
+        criteria: action.criteria,
         direction: action.direction
       };
     default:
