@@ -6,10 +6,11 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import { autoRehydrate } from 'redux-persist';
-import { users } from './modules/users/reducers/index';
+import { users, sortUsers } from './modules/users/reducers/index';
 
 const rootReducer = combineReducers({
-  users
+  users,
+  sortUsers
 });
 
 
