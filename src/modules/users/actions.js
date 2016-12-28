@@ -3,7 +3,7 @@ import types from './actionTypes';
 
 export const sortUsersBy = (criteria, direction) => {
   return {
-    type: SORT_USERS_BY,
+    type: types.SORT_USERS_BY,
     criteria,
     direction
   }
