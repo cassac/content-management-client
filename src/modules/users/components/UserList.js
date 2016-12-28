@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Grid, Row, Col } from 'react-bootstrap';
+import UserListItem from './UserListItem';
 
 class UserList extends Component {
   renderUsers() {
-    return this.props.users.map(user => {
-      return (
-        <p key={user._id}>{user.username}</p>
-      )
-    })
+    return this.props.users.map(user => (
+        <UserListItem 
+          key={user._id}
+          user={user} 
+        />
+    ));
   }
   render() {
     return (
-      <div>
+      <Grid className='text-center'>
         { this.renderUsers() }
-      </div>
+      </Grid>
     )
   }
 }
