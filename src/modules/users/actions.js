@@ -1,6 +1,14 @@
 import axios from 'axios';
 import types from './actionTypes';
 
+export const sortUsersBy = (criteria, direction) => {
+  return {
+    type: SORT_USERS_BY,
+    criteria,
+    direction
+  }
+}
+
 export const toggleNewUserModal = () => {
   return {
     type: types.NEW_USER_MODAL_OPEN
