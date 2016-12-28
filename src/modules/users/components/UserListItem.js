@@ -1,9 +1,13 @@
 import React from 'react';
 import { Glyphicon, Button, Row, Col } from 'react-bootstrap';
+import { verticalAlign } from '../../../style.js';
 
 const UserListItem = ({user}) => {
   return (
-    <Row className="show-grid">
+    <Row 
+      className="show-grid userListItem" 
+      style={verticalAlign}
+    >
       <Col xs={2}>
         <p>{user.username}</p>
       </Col>
@@ -16,7 +20,7 @@ const UserListItem = ({user}) => {
       <Col xs={2}>
         <p>{user.username}</p>
       </Col>
-      <Col xs={4}>
+      <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
           <Col xs={4}>
             <Button
