@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Glyphicon, Button, Row, Col } from 'react-bootstrap';
 import { verticalAlign } from '../../../style.js';
 import EditUser from './EditUser';
+import DeleteUser from './DeleteUser';
 
 const UserListItem = ({user}) => {
   return (
@@ -37,12 +38,7 @@ const UserListItem = ({user}) => {
             <EditUser user={user} />
           </Col>
           <Col xs={4}>
-            <Glyphicon 
-              glyph="trash" 
-              title={`Delete ${user.username}'s account`}
-              bsSize="xsmall" 
-              onClick={ () => console.log(`Delete ${user.username}'s account`) }
-            />
+            <DeleteUser user={user} />
           </Col>
         </Row>
       </Col>      
