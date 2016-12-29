@@ -23,31 +23,26 @@ const UserListItem = ({user}) => {
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
           <Col xs={4}>
-            <Button
+            <Glyphicon 
+              glyph="list-alt" 
               title={`View ${user.username}'s files`}
-              bsSize="xsmall" 
               onClick={ () => console.log(`View ${user.username}'s files`) }
-            >
-              <Glyphicon glyph="list-alt" />
-            </Button>
+            />
           </Col>
           <Col xs={4}>
-            <Button
+            <Glyphicon 
+              glyph="pencil" 
               title={`Edit ${user.username}'s profile`}
-              bsSize="xsmall" 
               onClick={ () => console.log(`Edit ${user.username}'s profile`) }
-            >
-              <Glyphicon glyph="pencil" />
-            </Button>
+            />
           </Col>
           <Col xs={4}>
-            <Button
+            <Glyphicon 
+              glyph="trash" 
               title={`Delete ${user.username}'s account`}
               bsSize="xsmall" 
               onClick={ () => console.log(`Delete ${user.username}'s account`) }
-            >
-              <Glyphicon glyph="trash" />
-            </Button>
+            />
           </Col>
         </Row>
       </Col>      
