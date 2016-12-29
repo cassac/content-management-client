@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Glyphicon, Button, Row, Col } from 'react-bootstrap';
 import { verticalAlign } from '../../../style.js';
+import EditUser from './EditUser';
 
 const UserListItem = ({user}) => {
   return (
@@ -33,11 +34,7 @@ const UserListItem = ({user}) => {
             </Link>
           </Col>
           <Col xs={4}>
-            <Glyphicon 
-              glyph="pencil" 
-              title={`Edit ${user.username}'s profile`}
-              onClick={ () => console.log(`Edit ${user.username}'s profile`) }
-            />
+            <EditUser user={user} />
           </Col>
           <Col xs={4}>
             <Glyphicon 
