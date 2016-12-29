@@ -7,13 +7,13 @@ class UserList extends Component {
   componentDidMount() {
     const listItems = document.querySelectorAll('.userListItem');
     listItems.forEach(item => {
-      item.addEventListener('mouseenter', e => {
-        e.target.classList.add('hoverItem');
-        e.target.lastChild.classList.remove('showOnHover');
+      item.addEventListener('mouseenter', ({target}) => {
+        target.classList.add('hoverItem');
+        target.lastChild.classList.remove('showOnHover');
       });
-      item.addEventListener('mouseleave', e => {
-        e.target.classList.remove('hoverItem');
-        e.target.lastChild.classList.add('showOnHover');
+      item.addEventListener('mouseleave', ({target}) => {
+        target.classList.remove('hoverItem');
+        target.lastChild.classList.add('showOnHover');
       });
     });
   }
