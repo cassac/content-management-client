@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Glyphicon, Button, Row, Col } from 'react-bootstrap';
 import { verticalAlign } from '../../../style.js';
-import EditUser from './EditUser';
-import DeleteUser from './DeleteUser';
+import EditUserModal from './EditUserModal';
+import DeleteUserModal from './DeleteUserModal';
 
 const UserListItem = ({user}) => {
   return (
@@ -35,10 +35,10 @@ const UserListItem = ({user}) => {
             </Link>
           </Col>
           <Col xs={4}>
-            <EditUser user={user} />
+            <EditUserModal user={user} />
           </Col>
           <Col xs={4}>
-            <DeleteUser user={user} />
+            <DeleteUserModal user={user} />
           </Col>
         </Row>
       </Col>      

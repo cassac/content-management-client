@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { toggleEditUserModal } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
+import EditUserForm from './EditUserForm';
 
-class EditUser extends Component {
+class EditUserModal extends Component {
   constructor() {
     super();
   }
@@ -26,6 +27,7 @@ class EditUser extends Component {
           <Modal.Body>
             <h4>Edit user</h4>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+            <EditUserForm />
             <hr />
           </Modal.Body>
           <Modal.Footer>
@@ -51,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditUser);
+export default connect(mapStateToProps, mapDispatchToProps)(EditUserModal);
