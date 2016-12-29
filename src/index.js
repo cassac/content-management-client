@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import storeConfig from './reducers';
 import App from './modules/common/components/App';
 import UsersDashboard from './modules/users/components/Dashboard';
+import UserFiles from './modules/files/components/UserFiles';
 
 const store = storeConfig();
 // persistStore(store);
@@ -13,8 +14,17 @@ const store = storeConfig();
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/dashboard' component={App}>
-        <Route path='/dashboard/users' component={UsersDashboard} />
+      <Route 
+        path='/dashboard' 
+        component={App}>
+        <Route 
+          path='/dashboard/users' 
+          component={UsersDashboard} 
+        />
+        <Route 
+          path='/dashboard/user/:userId/files' 
+          component={UserFiles} 
+        />
       </Route>
     </Router>
   </Provider>, 
