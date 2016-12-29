@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Glyphicon, Button, Row, Col } from 'react-bootstrap';
 import { verticalAlign } from '../../../style.js';
 
@@ -23,11 +24,13 @@ const UserListItem = ({user}) => {
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
           <Col xs={4}>
-            <Glyphicon 
-              glyph="list-alt" 
-              title={`View ${user.username}'s files`}
-              onClick={ () => console.log(`View ${user.username}'s files`) }
-            />
+            <Link to={`/dashboard/user/${user._id}/files`} >
+              <Glyphicon 
+                glyph="list-alt" 
+                title={`View ${user.username}'s files`}
+                onClick={ () => console.log(`View ${user.username}'s files`) }
+              />
+            </Link>
           </Col>
           <Col xs={4}>
             <Glyphicon 
