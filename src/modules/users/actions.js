@@ -9,6 +9,13 @@ export const sortUsersBy = (criteria, direction) => {
   }
 }
 
+export const toggleEditUserModal = (userId) => {
+  return {
+    type: types.EDIT_USER_MODAL_OPEN,
+    userId
+  }
+}
+
 export const toggleNewUserModal = () => {
   return {
     type: types.NEW_USER_MODAL_OPEN
