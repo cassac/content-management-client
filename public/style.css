@@ -1,7 +1,11 @@
 .hoverItem {
-  background-color: #f8f8f8;
+  background-color: #e7e7e7;
 }
 
 .showOnHover {
   display: none;
+}
+
+.glyphicon:hover {
+  cursor: pointer;
 }
