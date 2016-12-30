@@ -4,15 +4,20 @@ import {
   applyMiddleware, 
   combineReducers 
 } from 'redux';
+import { combineForms } from 'react-redux-form';
 import thunk from 'redux-thunk';
 import { autoRehydrate } from 'redux-persist';
-import { users, sortUsers } from './modules/users/reducers/index';
+import { users, sortUsers, editUser } from './modules/users/reducers/index';
+
+const formReducer = combineForms({
+  editUser,
+});
 
 const rootReducer = combineReducers({
   users,
-  sortUsers
+  sortUsers,
+  formReducer
 });
-
 
 const storeConfig = (initialState) => {
   return createStore(
