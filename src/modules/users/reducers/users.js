@@ -5,7 +5,11 @@ const initialState = {
   message: null,
   results: [],
   newUserModalOpen: false,
-  error: null
+  editUserModalOpen: false,
+  editUserId: null,
+  deleteUserModalOpen: false,
+  deleteUserId: null,
+  error: null,
 }
 
 const users = (state = initialState, action) => {
@@ -20,6 +24,18 @@ const users = (state = initialState, action) => {
         ...state,
         newUserModalOpen: !state.newUserModalOpen
       };
+    case types.EDIT_USER_MODAL_OPEN:
+      return {
+        ...state,
+        editUserModalOpen: !state.editUserModalOpen,
+        editUserId: state.editUserModalOpen ? null : action.userId 
+      }
+    case types.DELETE_USER_MODAL_OPEN:
+      return {
+        ...state,
+        deleteUserModalOpen: !state.deleteUserModalOpen,
+        deleteUserId: state.deleteUserModalOpen ? null : action.userId 
+      }
     default:
       return state;
   }
