@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Control, Form } from 'react-redux-form';
+import { Control, Form, actions } from 'react-redux-form';
 
 class EditUserForm extends Component {
   handleSubmit(val) {
@@ -8,10 +8,14 @@ class EditUserForm extends Component {
   }
   render() {
     return (
-      <Form model="user" onSubmit={(val) => this.handleSubmit(val)}>
-        <label>Your name?</label>
-        <Control.text model=".name" />
-        <button>Submit!</button>
+      <Form model="editUser" onSubmit={(editUser)=> {this.handleSubmit(editUser); console.log(editUser)}}>
+        <label>Username</label>
+        <Control.text model=".username" />
+        <label>Email</label>
+        <Control.text model=".email" />
+        <label>Company</label>
+        <Control.text model=".company" />
+        <input type='submit' value='Submit' />
       </Form>
     )
   }
