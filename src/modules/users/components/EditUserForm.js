@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Control, Form, actions } from 'react-redux-form';
+import { Field, Control, Form, actions } from 'react-redux-form';
 
 class EditUserForm extends Component {
   handleSubmit(val) {
-    console.log('submitted:', val)
+    console.log(val)
   }
   render() {
     return (
-      <Form model="editUser" onSubmit={(editUser)=> {this.handleSubmit(editUser); console.log(editUser)}}>
+      <Form model="form.editUser" 
+        onSubmit={ this.handleSubmit }>
         <label>Username</label>
         <Control.text model=".username" />
         <label>Email</label>
