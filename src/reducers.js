@@ -9,14 +9,14 @@ import thunk from 'redux-thunk';
 import { autoRehydrate } from 'redux-persist';
 import { users, sortUsers, editUser } from './modules/users/reducers/index';
 
-const formReducer = combineForms({
+const form = combineForms({
   editUser,
 });
 
 const rootReducer = combineReducers({
   users,
   sortUsers,
-  formReducer
+  form
 });
 
 const storeConfig = (initialState) => {
