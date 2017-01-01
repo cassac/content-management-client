@@ -15,11 +15,11 @@ class EditUserModal extends Component {
         <Glyphicon 
           glyph="pencil" 
           title={`Edit ${user.username}'s profile`}
-          onClick={ ()=>this.props.onModalClick(user._id) }
+          onClick={ ()=>this.props.onModalClick(user) }
         />
         <Modal 
           show={this.props.users.editUserModalOpen} 
-          onHide={ ()=>this.props.onModalClick(user._id) }
+          onHide={ ()=>this.props.onModalClick(user) }
         >
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
@@ -27,11 +27,11 @@ class EditUserModal extends Component {
           <Modal.Body>
             <h4>Edit user</h4>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-            <EditUserForm />
+            <EditUserForm user={user}/>
             <hr />
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={ ()=>this.props.onModalClick(user._id) }>Close</Button>
+            <Button onClick={ ()=>this.props.onModalClick(user) }>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -47,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onModalClick: (userId) => {
-      dispatch(toggleEditUserModal(userId));
+    onModalClick: (user) => {
+      dispatch(toggleEditUserModal(user));
     }
   }
 }

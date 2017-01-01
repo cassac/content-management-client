@@ -28,13 +28,16 @@ const users = (state = initialState, action) => {
       return {
         ...state,
         editUserModalOpen: !state.editUserModalOpen,
-        editUserId: state.editUserModalOpen ? null : action.userId 
+        editUserId: state.editUserModalOpen ? null : action.user._id,
+        editUsername: state.editUserModalOpen ? null : action.user.username,
+        editUserEmail: state.editUserModalOpen ? null : action.user.email,
+        editUserCompany: state.editUserModalOpen ? null : action.user.company,
       }
     case types.DELETE_USER_MODAL_OPEN:
       return {
         ...state,
         deleteUserModalOpen: !state.deleteUserModalOpen,
-        deleteUserId: state.deleteUserModalOpen ? null : action.userId 
+        deleteUserId: state.deleteUserModalOpen ? null : action.user._id 
       }
     default:
       return state;

@@ -12,7 +12,7 @@ const editUser = (state = initialState, action) => {
     case types.EDIT_USER_DATA:
       return {
         ...state,
-        userId: action.userId,
+        _id: action._id,
         username: action.username,
         email: action.email,
         company: action.company,
