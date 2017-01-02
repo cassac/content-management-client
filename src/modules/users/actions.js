@@ -16,6 +16,33 @@ export const toggleDeleteUserModal = (user) => {
   }
 }
 
+export const editUserSubmit = (updatedUser) => {
+  return {
+    type: types.EDIT_USER_SUBMIT,
+    // type: types.EDIT_USER_DATA_CLEAR,
+    updatedUser
+  }
+}
+
+export const editUserPOST = (updatedUser) => {
+  return dispatch => {
+    axios.post(`api/users/${updatedUser._id}`)
+    .then(response => {
+      dispatch({
+        // add action
+      })
+    })
+    .catch(error => {
+      dispatch({
+        type: types.REQUEST_ERROR,
+        payload: { 
+          // add payload
+        }
+      })
+    });
+  }
+}
+
 export const toggleEditUserModal = (user) => {
   return {
     type: types.EDIT_USER_MODAL_OPEN,
