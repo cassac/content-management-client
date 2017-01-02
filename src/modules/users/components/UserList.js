@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import UserListItem from './UserListItem';
+import { toggleEditUserModal } from '../actions';
 
 class UserList extends Component {
   componentDidMount() {
@@ -22,6 +23,7 @@ class UserList extends Component {
         <UserListItem 
           key={user._id}
           user={user}
+          onModalClick={ () => this.props.onModalClick(user) }
         />
     ));
   }
@@ -40,4 +42,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(UserList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onModalClick: (user) => {
+      dispatch(toggleEditUserModal(user));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
