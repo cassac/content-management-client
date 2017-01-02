@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { toggleEditUserModal, editUserSubmit } from '../actions';
+import { Field, Control, Form, actions } from 'react-redux-form';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
-import EditUserForm from './EditUserForm';
+import { Grid, Row, Col } from 'react-bootstrap';
+import { toggleEditUserModal, editUserSubmit } from '../actions';
+import EditUserFormInputs from './EditUserFormInputs';
 
 class EditUserModal extends Component {
-  constructor() {
-    super();
+  handleSubmit(vals) {
+    const updatedUser = {
+      ...vals,
+      _id: this.props.users.editUserId,
+    }
+    this.props.submitEdit(updatedUser)
   }
   render() {
     const { users } = this.props;
@@ -17,25 +23,37 @@ class EditUserModal extends Component {
       company: users.editUserCompany
     }
     return (
-      <div>
-        <Modal 
-          show={this.props.users.editUserModalOpen} 
-          onHide={ () => this.props.onModalClick(user) }
-        >
+      <Modal 
+        show={this.props.users.editUserModalOpen} 
+        onHide={ () => this.props.onModalClick(user) }
+      >
+        <Form model="form.editUser"
+          className='horizontal-form'
+          onSubmit={ this.handleSubmit.bind(this) }>
           <Modal.Header closeButton>
-            <Modal.Title>{`Edit ${user.username}'s profile`}</Modal.Title>
+            <Modal.Title>
+              {`Edit ${user.username}'s profile`}
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <EditUserForm 
-              users={users}
-              submitEdit={this.props.submitEdit}
-            />
+            <EditUserFormInputs users={users} />
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={ () => this.props.onModalClick(user) }>Close</Button>
+            <input 
+              type='submit' 
+              value='Submit' 
+              className='btn btn-success'
+              style={{'marginRight': '45px'}}
+            /> 
+            <div
+              className="btn btn-danger"
+              onClick={ () => this.props.onModalClick(user) }
+            >
+              Cancel
+            </div>
           </Modal.Footer>
-        </Modal>
-      </div>
+        </Form>
+      </Modal>
     )
   }
 }
@@ -55,6 +73,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(editUserSubmit(updatedUser));
     }
   }
-}
 
+}
 export default connect(mapStateToProps, mapDispatchToProps)(EditUserModal);
