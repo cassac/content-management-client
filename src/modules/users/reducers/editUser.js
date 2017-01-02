@@ -1,7 +1,7 @@
 import types from '../actionTypes';
 
 const initialState = {
-  userId: null,
+  _id: null,
   username: null,
   email: null,
   company: null,
@@ -9,14 +9,6 @@ const initialState = {
 
 const editUser = (state = initialState, action) => {
   switch (action.type) {
-    case types.EDIT_USER_DATA:
-      return {
-        ...state,
-        _id: action._id,
-        username: action.username,
-        email: action.email,
-        company: action.company,
-      }
     case types.EDIT_USER_DATA_CLEAR:
       return initialState;
     default:
@@ -24,4 +16,4 @@ const editUser = (state = initialState, action) => {
   }
 }
 
-export default initialState;
+export default editUser;
