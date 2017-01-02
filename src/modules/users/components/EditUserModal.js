@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { toggleEditUserModal } from '../actions';
+import { toggleEditUserModal, editUserSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import EditUserForm from './EditUserForm';
 
@@ -23,7 +23,7 @@ class EditUserModal extends Component {
           onHide={ () => this.props.onModalClick(user) }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{`Edit ${user.username}'s profile`}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <h4>Edit user</h4>
@@ -43,15 +43,15 @@ class EditUserModal extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     users: state.users,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onModalClick: (user) => {
+    onModalClick: user => {
       dispatch(toggleEditUserModal(user));
     },
     submitEdit: updatedUser => {
