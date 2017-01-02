@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {reset} from 'redux-form';
 import { Field, Control, Form, actions } from 'react-redux-form';
+import { Grid, Row, Col } from 'react-bootstrap';
 import { editUserSubmit } from '../actions';
 
 class EditUserForm extends Component {
@@ -18,25 +19,45 @@ class EditUserForm extends Component {
   render() {
     const { users } = this.props;
     return (
-      <Form model="form.editUser" 
-        onSubmit={ this.handleSubmit.bind(this) }>
-        <label>Username</label>
-        <Control.text 
-          model="editUser.username" 
-          defaultValue={users.editUsername || ''}
-        />
-        <label>Email</label>
-        <Control.text 
-          model="editUser.email" 
-          defaultValue={users.editUserEmail || ''}
-        />
-        <label>Company</label>
-        <Control.text 
-          model="editUser.company" 
-          defaultValue={users.editUserCompany || ''}
-        />
-        <input type='submit' value='Submit' />
-      </Form>
+      <Grid>
+        <Form model="form.editUser"
+          onSubmit={ this.handleSubmit.bind(this) }>
+          <Row className="show-grid">
+            <Col xs={3}>
+              <label>Username</label>
+
+            </Col>
+            <Col xs={9}>
+              <Control.text 
+                className=''
+                model="editUser.username" 
+                defaultValue={users.editUsername || ''}
+              />
+            </Col>
+            <Col xs={3}>
+              <label>Email</label>
+            </Col>
+            <Col xs={9}>
+              <Control.text 
+                model="editUser.email" 
+                defaultValue={users.editUserEmail || ''}
+              />
+            </Col>
+            <Col xs={3}>
+              <label>Company</label>
+            </Col>
+            <Col xs={9}>
+              <Control.text 
+                model="editUser.company" 
+                defaultValue={users.editUserCompany || ''}
+              />
+            </Col>
+            <Col xs={12}>
+              <button className="btn btn-default">Submit</button>
+            </Col>
+          </Row>
+        </Form>
+      </Grid>
     )
   }
 }

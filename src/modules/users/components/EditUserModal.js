@@ -26,13 +26,10 @@ class EditUserModal extends Component {
             <Modal.Title>{`Edit ${user.username}'s profile`}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Edit user</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
             <EditUserForm 
               users={users}
               submitEdit={this.props.submitEdit}
             />
-            <hr />
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={ () => this.props.onModalClick(user) }>Close</Button>
