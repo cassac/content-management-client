@@ -8,12 +8,14 @@ class EditUserForm extends Component {
   constructor(props) {
     super();
   }
-  handleSubmit(val) {
-    console.log(val)
-    // this.props.submitEdit(val)
+  handleSubmit(vals) {
+    const updatedUser = {
+      ...vals,
+      _id: this.props.users.editUserId,
+    }
+    this.props.submitEdit(updatedUser)
   }
   render() {
-    console.log(this)
     const { users } = this.props;
     return (
       <Form model="form.editUser" 
@@ -21,17 +23,17 @@ class EditUserForm extends Component {
         <label>Username</label>
         <Control.text 
           model="editUser.username" 
-          value={users.editUserId || ''}
+          defaultValue={users.editUsername || ''}
         />
         <label>Email</label>
         <Control.text 
           model="editUser.email" 
-          value={users.editUserEmail || ''}
+          defaultValue={users.editUserEmail || ''}
         />
         <label>Company</label>
         <Control.text 
           model="editUser.company" 
-          value={users.editUserCompany || ''}
+          defaultValue={users.editUserCompany || ''}
         />
         <input type='submit' value='Submit' />
       </Form>
