@@ -1,9 +1,12 @@
 import axios from 'axios';
-import types from './actionTypes';
+import usersTypes from './actionTypes';
+import commonTypes from '../common/actionTypes';
+
+const BASE_URL = 'http://localhost:3000/';
 
 export const sortUsersBy = (criteria, direction) => {
   return {
-    type: types.SORT_USERS_BY,
+    type: usersTypes.SORT_USERS_BY,
     criteria,
     direction
   }
@@ -11,48 +14,42 @@ export const sortUsersBy = (criteria, direction) => {
 
 export const toggleDeleteUserModal = (user) => {
   return {
-    type: types.DELETE_USER_MODAL_OPEN,
+    type: usersTypes.DELETE_USER_MODAL_OPEN,
     user
   }
 }
 
 export const editUserSubmit = (updatedUser) => {
-  return {
-    type: types.EDIT_USER_SUBMIT,
-    // type: types.EDIT_USER_DATA_CLEAR,
-    updatedUser
-  }
-}
-
-export const editUserPOST = (updatedUser) => {
   return dispatch => {
-    axios.post(`api/users/${updatedUser._id}`)
+    axios.put(`${BASE_URL}api/users/${updatedUser._id}`)
     .then(response => {
       dispatch({
-        // add action
+        type: commonTypes.REQUEST_SUCCESS,
+        payload: response.body,
       })
     })
     .catch(error => {
       dispatch({
-        type: types.REQUEST_ERROR,
-        payload: { 
-          // add payload
+        type: commonTypes.REQUEST_ERROR,
+        payload: {
+          message: error.response.statusText, 
+          status: error.response.status
         }
-      })
+      });
     });
   }
 }
 
 export const toggleEditUserModal = (user) => {
   return {
-    type: types.EDIT_USER_MODAL_OPEN,
+    type: usersTypes.EDIT_USER_MODAL_OPEN,
     user
   }
 }
 
 export const toggleNewUserModal = () => {
   return {
-    type: types.NEW_USER_MODAL_OPEN
+    type: usersTypes.NEW_USER_MODAL_OPEN
   }
 }
 
@@ -62,7 +59,7 @@ export const getUserData = (query) => {
     .then(response => {
       if (response.success) {
         dispatch({
-          type: types.REQUESTED_USERS,
+          type: usersTypes.REQUESTED_USERS,
           success: response.success,
           message: response.message,
           results: response.results
@@ -70,18 +67,19 @@ export const getUserData = (query) => {
       }
       else {
         dispatch({
-          type: types.REQUEST_USERS_ERROR,
-          success: response.success,
-          message: response.message
+          type: commonTypes.REQUEST_ERROR,
+          payload: response.body
         })
       }
     })
     .catch(error => {
       dispatch({
-        type: types.REQUEST_USERS_ERROR,
-        success: response.success,
-        message: response.message
-      });
+        type: commonTypes.REQUEST_ERROR,
+        payload: {
+          message: error.response.statusText, 
+          status: error.response.status
+        }
+      })
     });
   }
 }
