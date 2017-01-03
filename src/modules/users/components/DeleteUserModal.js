@@ -1,35 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { toggleDeleteUserModal } from '../actions';
+import { toggleDeleteUserModal, deleteUserSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
-class DeleteUser extends Component {
-  constructor() {
-    super();
+class DeleteUserModal extends Component {
+  handleSubmit(vals) {
+    this.props.submitDelete(vals);
   }
   render() {
-    const { user } = this.props;
+    const { users } = this.props;
+    const user = {
+      _id: users.deleteUserId,
+      username: users.deleteUsername,
+      email: users.deleteUserEmail,
+      company: users.deleteUserCompany
+    }
     return (
       <div>
-        <Glyphicon 
-          glyph="trash" 
-          title={`Delete ${user.username}'s account`}
-          onClick={ ()=>this.props.onModalClick(user._id) }
-        />
         <Modal 
           show={this.props.users.deleteUserModalOpen} 
-          onHide={ ()=>this.props.onModalClick(user._id) }
+          onHide={ ()=>this.props.onModalClick(user) }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{`Delete ${user.username}'s account`}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Delete user</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-            <hr />
+            <h4>Confirm account deletion</h4>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={ ()=>this.props.onModalClick(user._id) }>Close</Button>
+            <Button onClick={ ()=>this.props.onModalClick(user) }>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -45,10 +44,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onModalClick: (userId) => {
-      dispatch(toggleDeleteUserModal(userId));
+    onModalClick: user => {
+      dispatch(toggleDeleteUserModal(user));
+    },
+    submitDelete: user => {
+      dispatch(deleteUserSubmit(user));
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteUser);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteUserModal);

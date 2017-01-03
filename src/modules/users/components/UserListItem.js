@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Glyphicon, Button, Row, Col } from 'react-bootstrap';
 import { verticalAlign } from '../../../style.js';
-import DeleteUserModal from './DeleteUserModal';
 
-const UserListItem = ({user, onModalClick}) => {
+const UserListItem = ({user, onEditUserModalClick, onDeleteUserModalClick}) => {
   return (
     <Row 
       className="show-grid userListItem" 
@@ -36,12 +35,16 @@ const UserListItem = ({user, onModalClick}) => {
           <Col xs={4}>
             <Glyphicon 
               glyph="pencil" 
-              title={`Edit ${user.username}'s profile`}
-              onClick={ () => onModalClick(user) }
+              title={`Edit ${user.username}'s account`}
+              onClick={ () => onEditUserModalClick(user) }
             />
           </Col>
           <Col xs={4}>
-            <DeleteUserModal user={user} />
+            <Glyphicon 
+              glyph="trash" 
+              title={`Delete ${user.username}'s account`}
+              onClick={ () => onDeleteUserModalClick(user) }
+            />
           </Col>
         </Row>
       </Col>      

@@ -2,6 +2,7 @@ import React from 'react';
 import UserBar from '../components/UserBar';
 import UserList from '../components/UserList';
 import EditUserModal from '../components/EditUserModal';
+import DeleteUserModal from '../components/DeleteUserModal';
 
 const UsersDashboard = () => {
   return (
@@ -10,6 +11,7 @@ const UsersDashboard = () => {
       <UserBar />
       <UserList />
       <EditUserModal />
+      <DeleteUserModal />
     </div>
   )
 }

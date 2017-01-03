@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import UserListItem from './UserListItem';
-import { toggleEditUserModal } from '../actions';
+import { toggleEditUserModal, toggleDeleteUserModal } from '../actions';
 
 class UserList extends Component {
   componentDidMount() {
@@ -23,7 +23,8 @@ class UserList extends Component {
         <UserListItem 
           key={user._id}
           user={user}
-          onModalClick={ () => this.props.onModalClick(user) }
+          onEditUserModalClick={ () => this.props.onEditUserModalClick(user) }
+          onDeleteUserModalClick={ () => this.props.onDeleteUserModalClick(user) }
         />
     ));
   }
@@ -44,8 +45,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onModalClick: (user) => {
+    onEditUserModalClick: (user) => {
       dispatch(toggleEditUserModal(user));
+    },
+    onDeleteUserModalClick: (user) => {
+      dispatch(toggleDeleteUserModal(user));
     }
   }
 }
