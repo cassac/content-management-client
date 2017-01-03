@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { toggleCreateUserModal } from '../actions';
+import { toggleCreateUserModal, createUserSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
 class CreateUserModal extends Component {
@@ -45,6 +45,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onModalClick: () => {
       dispatch(toggleCreateUserModal());
+    },
+    submitCreate: newUser => {
+      dispatch(createUserSubmit(newUser));
     }
   }
 }
