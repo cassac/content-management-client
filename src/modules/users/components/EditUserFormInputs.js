@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, Control, Form, actions } from 'react-redux-form';
+import { Control, Form } from 'react-redux-form';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 const EditUserFormInputs = ({users}) => {

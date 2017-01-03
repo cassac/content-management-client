@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Field, Control, Form, actions } from 'react-redux-form';
+import { Form } from 'react-redux-form';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { toggleEditUserModal, editUserSubmit } from '../actions';
@@ -28,7 +28,6 @@ class EditUserModal extends Component {
         onHide={ () => this.props.onModalClick(user) }
       >
         <Form model="form.editUser"
-          className='horizontal-form'
           onSubmit={ this.handleSubmit.bind(this) }>
           <Modal.Header closeButton>
             <Modal.Title>
