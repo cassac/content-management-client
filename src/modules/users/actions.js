@@ -37,10 +37,16 @@ export const sortUsersBy = (criteria, direction) => {
   }
 }
 
-export const toggleDeleteUserModal = (user) => {
-  return {
-    type: usersTypes.DELETE_USER_MODAL_OPEN,
-    user
+
+export const deleteUserSubmit = (user) => {
+  return dispatch => {
+    axios.delete(`api/users/${user._id}`)
+    .then(response => {
+      dispatch(handleRequestSuccess(response));
+    })
+    .catch(error => {
+      dispatch(handleRequestFail(error));
+    });
   }
 }
 
@@ -65,6 +71,13 @@ export const editUserSubmit = (updatedUser) => {
     .catch(error => {
       dispatch(handleRequestError(error));
     });
+  }
+}
+
+export const toggleDeleteUserModal = (user) => {
+  return {
+    type: usersTypes.DELETE_USER_MODAL_OPEN,
+    user
   }
 }
 
