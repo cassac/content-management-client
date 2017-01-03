@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { toggleCreateUserModal } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
-class CreateUser extends Component {
+class CreateUserModal extends Component {
   render() {
     return (
       <div>
@@ -15,7 +15,7 @@ class CreateUser extends Component {
           Create user
         </Button>
         <Modal 
-          show={this.props.users.newUserModalOpen} 
+          show={this.props.users.createUserModalOpen} 
           onHide={ this.props.onModalClick }
         >
           <Modal.Header closeButton>
@@ -49,4 +49,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUserModal);
