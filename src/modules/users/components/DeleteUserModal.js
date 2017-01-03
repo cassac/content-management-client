@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { toggleDeleteUserModal, deleteUserSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
 class DeleteUserModal extends Component {
-  handleSubmit(vals) {
-    this.props.submitDelete(vals);
+  constructor() {
+    super();
+    this.state = {
+      errors: null
+    }
+  }
+  renderErrors() {
+    if (!this.state.errors) return;
+    return <span className='text-danger'>{this.state.errors}</span>;
+  }
+  handleSubmit(e) {  
+    e.preventDefault();
+    const { deleteUsername, deleteUserId } = this.props.users;
+    if (e.target.username.value !== deleteUsername) {
+      this.setState({errors: 'Usernames don\'t match'})
+      return;
+    }
+    this.props.submitDelete(deleteUserId);
   }
   render() {
     const { users } = this.props;
@@ -16,22 +32,38 @@ class DeleteUserModal extends Component {
       company: users.deleteUserCompany
     }
     return (
-      <div>
-        <Modal 
-          show={this.props.users.deleteUserModalOpen} 
-          onHide={ ()=>this.props.onModalClick(user) }
-        >
+      <Modal 
+        show={this.props.users.deleteUserModalOpen} 
+        onHide={ ()=>this.props.onModalClick(user) }
+      >
+        <form onSubmit={ this.handleSubmit.bind(this) } >
           <Modal.Header closeButton>
             <Modal.Title>{`Delete ${user.username}'s account`}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Confirm account deletion</h4>
+            <p>
+              To confirm, type in the username of the account to be delete
+              then submit.
+            </p>
+            <input type='text' name='username' className='form-control'/>
+            { this.renderErrors() }
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={ ()=>this.props.onModalClick(user) }>Close</Button>
+            <input 
+              type='submit' 
+              value='Submit' 
+              className='btn btn-success'
+              style={{'marginRight': '45px'}}
+            /> 
+            <div
+              className="btn btn-danger"
+              onClick={ () => this.props.onModalClick(user) }
+            >
+              Cancel
+            </div>
           </Modal.Footer>
-        </Modal>
-      </div>
+        </form>
+      </Modal>
     )
   }
 }
