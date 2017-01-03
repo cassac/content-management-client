@@ -2,7 +2,32 @@ import axios from 'axios';
 import usersTypes from './actionTypes';
 import commonTypes from '../common/actionTypes';
 
-const BASE_URL = 'http://localhost:3000/';
+axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.headers.common['authorization'] = localStorage.token;
+
+export const handleRequestSuccess = (response) => {
+  return {
+    type: commonTypes.REQUEST_SUCCESS,
+    payload: response.body
+  }
+}
+
+export const handleRequestError = (response) => {
+  return {
+    type: commonTypes.REQUEST_ERROR,
+    payload: response.body
+  }
+}
+
+export const handleRequestFail = (error) => {
+  return {
+    type: commonTypes.REQUEST_ERROR,
+    payload: {
+      message: error.response.statusText, 
+      status: error.response.status
+    }
+  }
+}
 
 export const sortUsersBy = (criteria, direction) => {
   return {
@@ -19,23 +44,26 @@ export const toggleDeleteUserModal = (user) => {
   }
 }
 
-export const editUserSubmit = (updatedUser) => {
+export const createUserSubmit = (newUser) => {
   return dispatch => {
-    axios.put(`${BASE_URL}api/users/${updatedUser._id}`)
+    axios.post(`api/users`, newUser)
     .then(response => {
-      dispatch({
-        type: commonTypes.REQUEST_SUCCESS,
-        payload: response.body,
-      })
+      dispatch(handleRequestSuccess(response));
     })
     .catch(error => {
-      dispatch({
-        type: commonTypes.REQUEST_ERROR,
-        payload: {
-          message: error.response.statusText, 
-          status: error.response.status
-        }
-      });
+      dispatch(handleRequestFail(error));
+    });
+  }
+}
+
+export const editUserSubmit = (updatedUser) => {
+  return dispatch => {
+    axios.put(`api/users/${updatedUser._id}`)
+    .then(response => {
+      dispatch(handleRequestSuccess(response));
+    })
+    .catch(error => {
+      dispatch(handleRequestError(error));
     });
   }
 }
@@ -58,28 +86,14 @@ export const getUserData = (query) => {
     axios.get('api/users')
     .then(response => {
       if (response.success) {
-        dispatch({
-          type: usersTypes.REQUESTED_USERS,
-          success: response.success,
-          message: response.message,
-          results: response.results
-        })
+        dispatch(handleRequestSuccess(response));
       }
       else {
-        dispatch({
-          type: commonTypes.REQUEST_ERROR,
-          payload: response.body
-        })
+        dispatch(handleRequestError(response));
       }
     })
     .catch(error => {
-      dispatch({
-        type: commonTypes.REQUEST_ERROR,
-        payload: {
-          message: error.response.statusText, 
-          status: error.response.status
-        }
-      })
+      dispatch(handleRequestFail(error));
     });
   }
 }
