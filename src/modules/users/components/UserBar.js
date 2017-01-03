@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import NewUser from './NewUser';
+import CreateUser from './CreateUser';
 import SortBar from './SortBar';
 import { Grid, Row, Col } from 'react-bootstrap';
 
@@ -13,7 +13,7 @@ const UserBar = () => {
           <SearchBar />
         </Col>
         <Col xs={4} sm={4}>
-          <NewUser />
+          <CreateUser />
         </Col>
       </Row>
 

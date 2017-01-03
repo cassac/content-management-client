@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { toggleNewUserModal } from '../actions';
+import { toggleCreateUserModal } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
-class NewUser extends Component {
+class CreateUser extends Component {
   render() {
     return (
       <div>
@@ -44,9 +44,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onModalClick: () => {
-      dispatch(toggleNewUserModal());
+      dispatch(toggleCreateUserModal());
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewUser);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);

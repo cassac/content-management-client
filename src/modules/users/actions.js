@@ -47,9 +47,9 @@ export const toggleEditUserModal = (user) => {
   }
 }
 
-export const toggleNewUserModal = () => {
+export const toggleCreateUserModal = () => {
   return {
-    type: usersTypes.NEW_USER_MODAL_OPEN
+    type: usersTypes.CREATE_USER_MODAL_OPEN
   }
 }
 
