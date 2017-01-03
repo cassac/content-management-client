@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { toggleCreateUserModal, createUserSubmit } from '../actions';
+import { connect } from 'react-redux';
+import { Form } from 'react-redux-form';
+import { toggleCreateUserModal, createUserSubmit} from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
+import CreateUserFormInputs from './CreateUserFormInputs';
 
 class CreateUserModal extends Component {
+  handleSubmit(vals) {
+    this.props.submitCreate(vals);
+  }
   render() {
     return (
       <div>
@@ -18,17 +23,29 @@ class CreateUserModal extends Component {
           show={this.props.users.createUserModalOpen} 
           onHide={ this.props.onModalClick }
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Create a new user</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-            <hr />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={ this.props.onModalClick }>Close</Button>
-          </Modal.Footer>
+          <Form model="form.createUser"
+            onSubmit={ this.handleSubmit.bind(this) }>
+            <Modal.Header closeButton>
+              <Modal.Title>Create a new user</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <CreateUserFormInputs />
+            </Modal.Body>
+            <Modal.Footer>
+              <input 
+                type='submit' 
+                value='Submit' 
+                className='btn btn-success'
+                style={{'marginRight': '45px'}}
+              /> 
+              <div
+                className="btn btn-danger"
+                onClick={ () => this.props.onModalClick() }
+              >
+                Cancel
+              </div>
+            </Modal.Footer>
+          </Form>
         </Modal>
       </div>
     )
