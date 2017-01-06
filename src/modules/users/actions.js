@@ -39,7 +39,6 @@ export const sortUsersBy = (criteria, direction) => {
 
 
 export const deleteUserSubmit = (userId) => {
-  console.log('delete:', userId)
   return dispatch => {
     axios.delete(`api/users/${userId}`)
     .then(response => {
