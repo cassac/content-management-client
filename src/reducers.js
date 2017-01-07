@@ -6,7 +6,6 @@ import {
 } from 'redux';
 import { 
   users, 
-  sortUsers, 
   editUser, 
   createUser, 
 } from './modules/users/reducers/index';
@@ -22,7 +21,6 @@ const form = combineForms({
 
 const rootReducer = combineReducers({
   users,
-  sortUsers,
   requests,
   form,
 });
