@@ -1,15 +1,18 @@
 import types from '../actionTypes';
 
 const initialState = {
-  success: null,
-  message: null,
   results: [],
-  newUserModalOpen: false,
+  createUserModalOpen: false,
   editUserModalOpen: false,
   editUserId: null,
+  editUsername: null,
+  editUserEmail: null,
+  editUserCompany: null,
   deleteUserModalOpen: false,
   deleteUserId: null,
-  error: null,
+  deleteUsername: null,
+  deleteUserEmail: null,
+  deleteUserCompany: null,
 }
 
 const users = (state = initialState, action) => {
@@ -17,12 +20,12 @@ const users = (state = initialState, action) => {
     case types.REQUESTED_USERS:
       return {
         ...state,
-        results: action.results
+        ...action.payload
       };
-    case types.NEW_USER_MODAL_OPEN:
+    case types.CREATE_USER_MODAL_OPEN:
       return {
         ...state,
-        newUserModalOpen: !state.newUserModalOpen
+        createUserModalOpen: !state.createUserModalOpen
       };
     case types.EDIT_USER_MODAL_OPEN:
       return {
@@ -37,7 +40,29 @@ const users = (state = initialState, action) => {
       return {
         ...state,
         deleteUserModalOpen: !state.deleteUserModalOpen,
-        deleteUserId: state.deleteUserModalOpen ? null : action.user._id 
+        deleteUserId: state.deleteUserModalOpen ? null : action.user._id, 
+        deleteUsername: state.deleteUserModalOpen ? null : action.user.username, 
+        deleteUserEmail: state.deleteUserModalOpen ? null : action.user.email, 
+        deleteUserCompany: state.deleteUserModalOpen ? null : action.user.company, 
+      }
+    case types.SORT_USERS_BY:
+      const sortBy = (a, b) => {
+        if (action.direction === 'ascending') {
+          if (a[action.criteria.toLowerCase()] < b[action.criteria.toLowerCase()]) {
+            return -1;
+          }
+          return 1;
+        }
+        else { // descending
+          if (a[action.criteria.toLowerCase()] < b[action.criteria.toLowerCase()]) {
+            return 1;
+          }
+          return -1;
+        }
+      }
+      return {
+        ...state,
+        results: state.results.slice().sort(sortBy), // use slice to copy array
       }
     default:
       return state;
