@@ -1,30 +1,11 @@
 import { axios } from '../../config';
 import usersTypes from './actionTypes';
 import commonTypes from '../common/actionTypes';
-
-export const handleRequestSuccess = (response) => {
-  return {
-    type: commonTypes.REQUEST_SUCCESS,
-    payload: response.body
-  }
-}
-
-export const handleRequestError = (response) => {
-  return {
-    type: commonTypes.REQUEST_ERROR,
-    payload: response.body
-  }
-}
-
-export const handleRequestFail = (error) => {
-  return {
-    type: commonTypes.REQUEST_ERROR,
-    payload: {
-      message: error.response.statusText, 
-      status: error.response.status
-    }
-  }
-}
+import { 
+  handleRequestSuccess, 
+  handleRequestError, 
+  handleRequestFail 
+} from '../common/actions';
 
 export const sortUsersBy = (criteria, direction) => {
   return {
@@ -33,7 +14,6 @@ export const sortUsersBy = (criteria, direction) => {
     direction
   }
 }
-
 
 export const deleteUserSubmit = (userId) => {
   return dispatch => {
