@@ -1,9 +1,6 @@
-import axios from 'axios';
+import { axios } from '../../config';
 import usersTypes from './actionTypes';
 import commonTypes from '../common/actionTypes';
-
-axios.defaults.baseURL = 'http://localhost:3000/';
-axios.defaults.headers.common['authorization'] = localStorage.token;
 
 export const handleRequestSuccess = (response) => {
   return {
