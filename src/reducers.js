@@ -9,6 +9,7 @@ import {
   editUser, 
   createUser, 
 } from './modules/users/reducers/index';
+import { auth } from './modules/auth/reducers/index';
 import { combineForms } from 'react-redux-form';
 import thunk from 'redux-thunk';
 import { autoRehydrate } from 'redux-persist';
@@ -20,6 +21,7 @@ const form = combineForms({
 });
 
 const rootReducer = combineReducers({
+  auth,
   users,
   requests,
   form,
