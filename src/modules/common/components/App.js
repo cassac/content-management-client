@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Navigation from './Navigation';
+import Signin from '../../auth/components/Signin';
 
-export default class App extends Component {
+class App extends Component {
+  renderBody() {
+    if (this.props.auth.authenticated) {
+      return this.props.children;
+    }
+    return <Signin />
+  }
   render() {
     return (
       <div>
-        <Navigation />
+        <Navigation authenticated={this.props.auth.authenticated} />
         <div className='container'>
-          {this.props.children}
+          { this.renderBody() }
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth.authenticated
+  }
+}
+
+export default connect(mapStateToProps)(App);
