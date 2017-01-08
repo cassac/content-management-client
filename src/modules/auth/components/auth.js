@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const wrapComponent = (ComposedComponent) => {
+const requireAuth = (ComposedComponent) => {
   class Auth extends Component {
     static contextTypes = {
       router: React.PropTypes.object
@@ -9,13 +9,13 @@ const wrapComponent = (ComposedComponent) => {
 
     componentWillMount() {
       if (!this.props.authenticated) {
-        this.context.router.push('/dashboard');
+        this.context.router.push('/dashboard/signin');
       }
     }
 
     componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
-        this.context.router.push('/signin');
+        this.context.router.push('/dashboard/signin');
       }
     }
 
@@ -34,4 +34,6 @@ const wrapComponent = (ComposedComponent) => {
 
 }
 
-export default wrapComponent;
+module.exports = {
+  requireAuth
+}
