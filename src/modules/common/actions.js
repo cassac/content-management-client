@@ -15,7 +15,6 @@ export const handleRequestError = ({response}) => {
 }
 
 export const handleRequestFail = (error) => {
-  console.log('fail')
   return {
     type: types.REQUEST_ERROR,
     payload: {
