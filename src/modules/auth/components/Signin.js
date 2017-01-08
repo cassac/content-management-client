@@ -1,12 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Form, FormGroup, ControlLabel, FormControl, 
+  Button, Grid, Row, Col } from 'react-bootstrap';
 
-class Signin extends Component {
-  render() {
-    return(
-      <div>Signin</div>
-    )
-  }
+const Signin = ({submitHandler}) => {
+  return(
+    <Grid>
+      <Row className='show-grid'>
+        <Col xsOffset={3} xs={6}>
+          <h1>User Sign In</h1>
+          <Form onSubmit={ submitHandler } >
+            <FormGroup>
+              <ControlLabel>Username</ControlLabel>
+              <FormControl
+                type='text' 
+                name='username' />
+              <ControlLabel>Password</ControlLabel>
+              <FormControl 
+                type='text' 
+                name='password'  />
+              <br />
+              <Button 
+                type='submit' 
+                bsStyle="default">
+                Sign In
+              </Button>
+            </FormGroup>
+          </Form>
+        </Col>
+      </Row>
+    </Grid>
+  )
 }
 
 export default Signin;
