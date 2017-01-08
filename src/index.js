@@ -16,6 +16,10 @@ const store = storeConfig();
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
+      <Route 
+        path='/dashboard'
+        component={App}
+      >
         <Route 
           path='/dashboard/signin' 
           component={Signin} 
@@ -28,6 +32,7 @@ render(
           path='/dashboard/user/:userId/files' 
           component={requireAuth(UserFiles)} 
         />
+      </Route>
     </Router>
   </Provider>, 
   document.getElementById('app')
