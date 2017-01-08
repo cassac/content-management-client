@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Signin = () => {
-  return <div>Signin here</div>
+class Signin extends Component {
+  render() {
+    return(
+      <div>Signin</div>
+    )
+  }
 }
 
 export default Signin;
