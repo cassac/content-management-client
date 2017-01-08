@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 const requireAuth = (ComposedComponent) => {
@@ -9,13 +10,15 @@ const requireAuth = (ComposedComponent) => {
 
     componentWillMount() {
       if (!this.props.authenticated) {
-        this.context.router.push('/dashboard');
+        browserHistory.push('/dashboard/signin');
+        this.context.router.push('/dashboard/signin');
       }
     }
 
     componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
-        this.context.router.push('/dashboard');
+        browserHistory.push('/dashboard/signin');
+        this.context.router.push('/dashboard/signin');
       }
     }
 
