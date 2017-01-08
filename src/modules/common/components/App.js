@@ -2,18 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import Signin from '../../auth/components/Signin';
+import * as actions from '../../auth/actions';
 
 class App extends Component {
+  submitHandler(e) {
+    e.preventDefault();
+    const creds = {
+      username: e.target.username.value,
+      password: e.target.password.value
+    }
+    this.props.signInRequest(creds);
+  }
   renderBody() {
-    if (this.props.auth.authenticated) {
+
+    if (this.props.authenticated) {
       return this.props.children;
     }
-    return <Signin />
+    return <Signin submitHandler={ this.submitHandler.bind(this) } />
   }
   render() {
     return (
       <div>
-        <Navigation authenticated={this.props.auth.authenticated} />
+        <Navigation authenticated={this.props.authenticated} />
         <div className='container'>
           { this.renderBody() }
         </div>
@@ -22,10 +32,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    auth: state.auth.authenticated
+    authenticated: state.auth.authenticated
   }
 }
 
-export default connect(mapStateToProps)(App);
+
+
+export default connect(mapStateToProps, actions)(App);
