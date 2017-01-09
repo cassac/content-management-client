@@ -36,6 +36,17 @@ const users = (state = initialState, action) => {
         editUserEmail: state.editUserModalOpen ? null : action.user.email,
         editUserCompany: state.editUserModalOpen ? null : action.user.company,
       }
+    case types.EDIT_USER_SUCCESS:
+      const { payload } = action;
+      return {
+        ...state,
+        results: state.results.map(user => {
+          if (payload._id === user._id) {
+            return payload;
+          }
+          return user;
+        }),
+      }
     case types.DELETE_USER_MODAL_OPEN:
       return {
         ...state,
