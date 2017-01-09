@@ -2,7 +2,7 @@ import React from 'react';
 import { Control, Form } from 'react-redux-form';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-const CreateUserFormInputs = () => {
+const CreateUserFormInputs = ({renderErrors}) => {
   return (
     <Grid style={{width: 'inherit'}}>
     <Row>
@@ -15,7 +15,6 @@ const CreateUserFormInputs = () => {
             'marginBottom': '38px'
           }}
         />
-        <br/>
         <label className='pull-left'>Profile Photo</label>
         <input type='file' className='form-control'/>
       </Col>
@@ -26,16 +25,16 @@ const CreateUserFormInputs = () => {
             <Control.text 
               model="createUser.username" 
               className='form-control'
+              required
             />
-          <br/>
           </Col>
           <Col>
             <label>Email</label>
             <Control.text 
               model="createUser.email" 
               className='form-control'
+              required
             />
-          <br/>
           </Col>
           <Col>
             <label>Company</label>
@@ -43,6 +42,23 @@ const CreateUserFormInputs = () => {
               model="createUser.company" 
               className='form-control'
             />
+          </Col>
+          <Col>
+            <label>Password</label>
+            <Control 
+              model="createUser.password" 
+              className='form-control'
+              type='password'
+            />
+          </Col>
+          <Col>
+            <label>Confirm Password</label>
+            <Control 
+              model="createUser.confirmPassword" 
+              className='form-control'
+              type="password"
+            />
+            { renderErrors() }
           </Col>
         </Row>
       </Col>
