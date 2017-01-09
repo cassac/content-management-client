@@ -17,7 +17,7 @@ const initialState = {
 
 const users = (state = initialState, action) => {
   switch (action.type) {
-    case types.REQUESTED_USERS:
+    case types.REQUEST_USERS:
       return {
         ...state,
         ...action.payload
