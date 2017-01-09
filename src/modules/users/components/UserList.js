@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import UserListItem from './UserListItem';
-import { toggleEditUserModal, toggleDeleteUserModal } from '../actions';
+import { toggleEditUserModal, toggleDeleteUserModal, getUsers } from '../actions';
 
 class UserList extends Component {
   componentDidMount() {
+    // Initial user request
+    if (!this.props.users.length) this.props.getUsers();
+    // Attach event listeners to list item elements
     const listItems = document.querySelectorAll('.userListItem');
     listItems.forEach(item => {
       item.addEventListener('mouseenter', ({target}) => {
@@ -50,6 +53,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onDeleteUserModalClick: (user) => {
       dispatch(toggleDeleteUserModal(user));
+    },
+    getUsers: () => {
+      dispatch(getUsers());
     }
   }
 }

@@ -71,12 +71,16 @@ export const toggleCreateUserModal = () => {
   }
 }
 
-export const getUserData = (query) => {
+export const getUsers = (query) => {
   return (dispatch) => {
     axios.get('api/users')
     .then(response => {
-      if (response.success) {
+      if (response.data.success) {
         dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: usersTypes.REQUEST_USERS,
+          payload: response.data
+        })
       }
       else {
         dispatch(handleRequestError(response));
