@@ -71,7 +71,7 @@ export const toggleCreateUserModal = () => {
   }
 }
 
-export const getUsers = (query) => {
+export const getUsers = (cb) => {
   return (dispatch) => {
     axios.get('api/users')
     .then(response => {
@@ -85,6 +85,8 @@ export const getUsers = (query) => {
       else {
         dispatch(handleRequestError(response));
       }
+      // invoke callback if present
+      if (cb) cb();
     })
     .catch(error => {
       dispatch(handleRequestFail(error));
