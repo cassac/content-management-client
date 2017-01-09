@@ -9,6 +9,6 @@ module.exports = {
     'Username',
     'Company',
     'Email',
-    'Last name'
+    'Surname'
   ],
 }
