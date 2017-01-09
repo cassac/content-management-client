@@ -29,9 +29,16 @@ export const deleteUserSubmit = (userId) => {
 
 export const createUserSubmit = (newUser) => {
   return dispatch => {
-    axios.post(`api/users`, newUser)
+    axios.post(`auth/signup`, newUser)
     .then(response => {
       dispatch(handleRequestSuccess(response));
+      dispatch({
+        type: usersTypes.CREATE_USER_SUCCESS,
+        payload: response.data.results
+      });
+      dispatch({
+        type: usersTypes.CREATE_USER_MODAL_OPEN
+      });
     })
     .catch(error => {
       dispatch(handleRequestFail(error));
@@ -50,7 +57,7 @@ export const editUserSubmit = (updatedUser) => {
       });
       dispatch({
         type: usersTypes.EDIT_USER_MODAL_OPEN
-      })
+      });
     })
     .catch(error => {
       dispatch(handleRequestFail(error));
