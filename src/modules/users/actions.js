@@ -41,9 +41,13 @@ export const createUserSubmit = (newUser) => {
 
 export const editUserSubmit = (updatedUser) => {
   return dispatch => {
-    axios.put(`api/users/${updatedUser._id}`)
+    axios.put(`api/users/${updatedUser._id}`, updatedUser)
     .then(response => {
       dispatch(handleRequestSuccess(response));
+      dispatch({
+        type: usersTypes.EDIT_USER_SUCCESS,
+        payload: response.data
+      });
     })
     .catch(error => {
       dispatch(handleRequestError(error));
