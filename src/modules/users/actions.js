@@ -46,11 +46,14 @@ export const editUserSubmit = (updatedUser) => {
       dispatch(handleRequestSuccess(response));
       dispatch({
         type: usersTypes.EDIT_USER_SUCCESS,
-        payload: response.data
+        payload: response.data.results
       });
+      dispatch({
+        type: usersTypes.EDIT_USER_MODAL_OPEN
+      })
     })
     .catch(error => {
-      dispatch(handleRequestError(error));
+      dispatch(handleRequestFail(error));
     });
   }
 }
