@@ -13,13 +13,13 @@ const UserListItem = ({user, onEditUserModalClick, onDeleteUserModalClick}) => {
         <p>{user.username}</p>
       </Col>
       <Col xs={2}>
-        <p>{user.username}</p>
+        <p>{user.company}</p>
       </Col>
       <Col xs={2}>
-        <p>{user.username}</p>
+        <p>{user.email}</p>
       </Col>
       <Col xs={2}>
-        <p>{user.username}</p>
+        <p>{user.lastname}</p>
       </Col>
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
