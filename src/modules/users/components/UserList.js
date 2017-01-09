@@ -5,9 +5,7 @@ import UserListItem from './UserListItem';
 import { toggleEditUserModal, toggleDeleteUserModal, getUsers } from '../actions';
 
 class UserList extends Component {
-  componentDidMount() {
-    // Initial user request
-    if (!this.props.users.length) this.props.getUsers();
+  addListeners() {
     // Attach event listeners to list item elements
     const listItems = document.querySelectorAll('.userListItem');
     listItems.forEach(item => {
@@ -20,6 +18,15 @@ class UserList extends Component {
         target.lastChild.classList.add('showOnHover');
       });
     });
+  }
+  componentDidMount() {
+    // Initial user request and add event listeners
+    if (!this.props.users.length) {
+      this.props.getUsers(this.addListeners);
+    }
+    else {
+      this.addListeners();
+    }
   }
   renderUsers() {
     return this.props.users.map(user => (
@@ -54,8 +61,8 @@ const mapDispatchToProps = (dispatch) => {
     onDeleteUserModalClick: (user) => {
       dispatch(toggleDeleteUserModal(user));
     },
-    getUsers: () => {
-      dispatch(getUsers());
+    getUsers: (cb) => {
+      dispatch(getUsers(cb));
     }
   }
 }
