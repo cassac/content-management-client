@@ -7,7 +7,7 @@ export const handleRequestSuccess = (response) => {
   }
 }
 
-export const handleRequestError = ({response}) => {
+export const handleRequestError = (response) => {
   return {
     type: types.REQUEST_ERROR,
     payload: response.data
