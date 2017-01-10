@@ -4,6 +4,8 @@ const initialState = {
   username: null,
   email: null,
   company: null,
+  password: null,
+  confirmPassword: null
 };
 
 const createUser = (state = initialState, action) => {
