@@ -27,6 +27,11 @@ const users = (state = initialState, action) => {
         ...state,
         createUserModalOpen: !state.createUserModalOpen
       };
+    case types.CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        results: [...state.results, action.payload],
+      }
     case types.EDIT_USER_MODAL_OPEN:
       return {
         ...state,
