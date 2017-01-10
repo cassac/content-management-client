@@ -19,7 +19,12 @@ export const deleteUserSubmit = (userId) => {
   return dispatch => {
     axios.delete(`api/users/${userId}`)
     .then(response => {
-      dispatch(handleRequestSuccess(response));
+      if (response.data.success) {
+        dispatch(handleRequestSuccess(response));
+      }
+      else {
+        dispatch(handleRequestError(response));        
+      }
     })
     .catch(error => {
       dispatch(handleRequestFail(error));
@@ -31,14 +36,19 @@ export const createUserSubmit = (newUser) => {
   return dispatch => {
     axios.post(`auth/signup`, newUser)
     .then(response => {
-      dispatch(handleRequestSuccess(response));
-      dispatch({
-        type: usersTypes.CREATE_USER_SUCCESS,
-        payload: response.data.results
-      });
-      dispatch({
-        type: usersTypes.CREATE_USER_MODAL_OPEN
-      });
+      if (response.data.success) {
+        dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: usersTypes.CREATE_USER_SUCCESS,
+          payload: response.data.results
+        });
+        dispatch({
+          type: usersTypes.CREATE_USER_MODAL_OPEN
+        });
+      }
+      else {
+        dispatch(handleRequestError(response));        
+      }
     })
     .catch(error => {
       dispatch(handleRequestFail(error));
@@ -50,14 +60,19 @@ export const editUserSubmit = (updatedUser) => {
   return dispatch => {
     axios.put(`api/users/${updatedUser._id}`, updatedUser)
     .then(response => {
-      dispatch(handleRequestSuccess(response));
-      dispatch({
-        type: usersTypes.EDIT_USER_SUCCESS,
-        payload: response.data.results
-      });
-      dispatch({
-        type: usersTypes.EDIT_USER_MODAL_OPEN
-      });
+      if (response.data.success) {
+        dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: usersTypes.EDIT_USER_SUCCESS,
+          payload: response.data.results
+        });
+        dispatch({
+          type: usersTypes.EDIT_USER_MODAL_OPEN
+        });
+      }
+      else {
+        dispatch(handleRequestError(response));                
+      }
     })
     .catch(error => {
       dispatch(handleRequestFail(error));
