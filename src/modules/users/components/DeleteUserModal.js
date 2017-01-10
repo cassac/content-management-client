@@ -4,15 +4,9 @@ import { toggleDeleteUserModal, deleteUserSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
 class DeleteUserModal extends Component {
-  constructor() {
-    super();
-    this.state = {
-      errors: null
-    }
-  }
   renderErrors() {
-    if (!this.state.errors) return;
-    return <span className='text-danger'>{this.state.errors}</span>;
+    if (this.props.requests.success) return;
+    return <span className='text-danger'>{this.props.requests.message}</span>;
   }
   handleSubmit(e) {  
     e.preventDefault();
@@ -71,6 +65,7 @@ class DeleteUserModal extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.users,
+    requests: state.requests
   }
 }
 

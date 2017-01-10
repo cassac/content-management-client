@@ -7,6 +7,10 @@ import { toggleEditUserModal, editUserSubmit } from '../actions';
 import EditUserFormInputs from './EditUserFormInputs';
 
 class EditUserModal extends Component {
+  renderErrors() {
+    if (this.props.requests.success) return;
+    return <span className='text-danger'>{this.props.requests.message}</span>;
+  }
   handleSubmit(vals) {
     const updatedUser = {
       ...vals,
@@ -35,7 +39,10 @@ class EditUserModal extends Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <EditUserFormInputs users={users} />
+            <EditUserFormInputs 
+              users={users} 
+              renderErrors={this.renderErrors.bind(this)}
+            />
           </Modal.Body>
           <Modal.Footer>
             <input 
@@ -57,11 +64,13 @@ class EditUserModal extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     users: state.users,
+    requests: state.requests
   }
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {

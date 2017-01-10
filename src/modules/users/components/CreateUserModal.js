@@ -6,15 +6,9 @@ import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import CreateUserFormInputs from './CreateUserFormInputs';
 
 class CreateUserModal extends Component {
-  constructor() {
-    super();
-    this.state = {
-      errors: null
-    }
-  }
   renderErrors() {
-    if (!this.state.errors) return;
-    return <span className='text-danger'>{this.state.errors}</span>;
+    if (this.props.requests.success) return;
+    return <span className='text-danger'>{this.props.requests.message}</span>;
   }
   handleSubmit(vals) {
     if (vals.password !== vals.confirmPassword) {
@@ -69,6 +63,7 @@ class CreateUserModal extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.users,
+    requests: state.requests
   }
 }
 

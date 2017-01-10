@@ -2,7 +2,7 @@ import React from 'react';
 import { Control, Form } from 'react-redux-form';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-const EditUserFormInputs = ({users}) => {
+const EditUserFormInputs = ({users, renderErrors}) => {
   return (
      <Grid style={{width: 'inherit'}}>
       <Row>
@@ -46,6 +46,7 @@ const EditUserFormInputs = ({users}) => {
                 defaultValue={users.editUserCompany || ''}
                 className='form-control'
               />
+            { renderErrors() }
             </Col>
           </Row>
         </Col>
