@@ -52,6 +52,11 @@ const users = (state = initialState, action) => {
           return user;
         }),
       }
+    case types.DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        results: state.results.filter(user => user._id !== action.payload._id),
+      }
     case types.DELETE_USER_MODAL_OPEN:
       return {
         ...state,
