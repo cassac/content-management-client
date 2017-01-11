@@ -6,10 +6,6 @@ import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import CreateUserFormInputs from './CreateUserFormInputs';
 
 class CreateUserModal extends Component {
-  renderErrors() {
-    if (this.props.requests.success) return;
-    return <span className='text-danger'>{this.props.requests.message}</span>;
-  }
   handleSubmit(vals) {
     if (vals.password !== vals.confirmPassword) {
       this.setState({errors: 'Passwords don\'t match'})
@@ -37,7 +33,7 @@ class CreateUserModal extends Component {
               <Modal.Title>Create a new user</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <CreateUserFormInputs renderErrors={this.renderErrors.bind(this)} />
+              <CreateUserFormInputs />
             </Modal.Body>
             <Modal.Footer>
               <input 
@@ -63,7 +59,6 @@ class CreateUserModal extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.users,
-    requests: state.requests
   }
 }
 

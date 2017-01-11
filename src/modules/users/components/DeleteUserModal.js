@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleDeleteUserModal, deleteUserSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
+import FlashMessage from '../../common/components/FlashMessage';
 
 class DeleteUserModal extends Component {
-  renderErrors() {
-    if (this.props.requests.success) return;
-    return <span className='text-danger'>{this.props.requests.message}</span>;
-  }
   handleSubmit(e) {  
     e.preventDefault();
     const { deleteUsername, deleteUserId } = this.props.users;
@@ -40,7 +37,7 @@ class DeleteUserModal extends Component {
               then submit.
             </p>
             <input type='text' name='username' className='form-control'/>
-            { this.renderErrors() }
+            <FlashMessage />
           </Modal.Body>
           <Modal.Footer>
             <input 

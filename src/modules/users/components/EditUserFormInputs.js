@@ -1,6 +1,7 @@
 import React from 'react';
 import { Control, Form } from 'react-redux-form';
 import { Grid, Row, Col } from 'react-bootstrap';
+import FlashMessage from '../../common/components/FlashMessage';
 
 const EditUserFormInputs = ({users, renderErrors}) => {
   return (
@@ -46,7 +47,7 @@ const EditUserFormInputs = ({users, renderErrors}) => {
                 defaultValue={users.editUserCompany || ''}
                 className='form-control'
               />
-            { renderErrors() }
+              <FlashMessage />
             </Col>
           </Row>
         </Col>

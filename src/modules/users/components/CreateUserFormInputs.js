@@ -1,6 +1,7 @@
 import React from 'react';
 import { Control, Form } from 'react-redux-form';
 import { Grid, Row, Col } from 'react-bootstrap';
+import FlashMessage from '../../common/components/FlashMessage';
 
 const CreateUserFormInputs = ({renderErrors}) => {
   return (
@@ -58,7 +59,7 @@ const CreateUserFormInputs = ({renderErrors}) => {
               className='form-control'
               type="password"
             />
-            { renderErrors() }
+            <FlashMessage />
           </Col>
         </Row>
       </Col>
