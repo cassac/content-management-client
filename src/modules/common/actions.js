@@ -3,7 +3,7 @@ import types from './actionTypes';
 export const handleRequestSuccess = (response) => {
   return {
     type: types.REQUEST_SUCCESS,
-    payload: response.body
+    payload: response.data
   }
 }
 
