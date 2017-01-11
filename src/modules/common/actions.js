@@ -23,3 +23,9 @@ export const handleRequestFail = (error) => {
     }
   }
 }
+
+export const hideFlashMessage = () => {
+  return {
+    type: types.REQUEST_REDUCER_CLEAR
+  }
+}
