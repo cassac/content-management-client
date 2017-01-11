@@ -21,6 +21,13 @@ export const deleteUserSubmit = (userId) => {
     .then(response => {
       if (response.data.success) {
         dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: usersTypes.DELETE_USER_SUCCESS,
+          payload: {_id: userId}
+        });
+        dispatch({
+          type: usersTypes.DELETE_USER_MODAL_OPEN
+        });
       }
       else {
         dispatch(handleRequestError(response));        
