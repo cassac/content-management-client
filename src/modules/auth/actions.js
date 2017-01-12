@@ -21,3 +21,20 @@ export const signInRequest = (credentials) => {
     })
   }
 }
+
+export const signOutRequest = () => {
+  return dispatch => {
+    dispatch({
+      type: types.USER_SIGNOUT
+    })
+    localStorage.removeItem('token');
+    dispatch(handleRequestSuccess({
+      data: {
+        message: 'Successfully logged out',
+        success: true,
+        status: 200
+      } 
+    }));
+    browserHistory.push('/dashboard/signin');
+  }
+}

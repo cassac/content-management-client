@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Form, FormGroup, ControlLabel, FormControl, 
   Button, Grid, Row, Col } from 'react-bootstrap';
 
