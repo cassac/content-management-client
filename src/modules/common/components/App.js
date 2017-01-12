@@ -23,7 +23,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navigation authenticated={this.props.authenticated} />
+        <Navigation 
+          authenticated={this.props.authenticated}
+          signOutRequest={ this.props.signOutRequest }
+         />
         <div className='container'>
           { this.renderBody() }
         </div>
