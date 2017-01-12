@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-const Navigation = ({authenticated}) => {
+const Navigation = ({authenticated, signOutRequest}) => {
   const renderAuth = () => {
     if (authenticated) {
       return (
@@ -19,7 +19,10 @@ const Navigation = ({authenticated}) => {
                 <MenuItem eventKey={3.1}>Profile</MenuItem>
               </LinkContainer>
               <MenuItem divider />
-              <LinkContainer to='/dashboard/signout'>
+              <LinkContainer 
+                to='/dashboard/signin'
+                onClick={ () => signOutRequest() } 
+              >
                 <MenuItem eventKey={3.2}>Signout</MenuItem>
               </LinkContainer>
             </NavDropdown>          
