@@ -14,7 +14,7 @@ const requests = (state = initialState, action) => {
       return {
         ...state,
         success: payload.success,
-        message: payload.message
+        message: payload.message,
       }
     case types.REQUEST_ERROR:
       return {
