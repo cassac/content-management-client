@@ -5,6 +5,8 @@ const initialState = {
   username: null,
   email: null,
   company: null,
+  password: null,
+  confirmPassword: null
 };
 
 const editUser = (state = initialState, action) => {
