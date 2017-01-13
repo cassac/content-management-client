@@ -1,5 +1,6 @@
 import { browserHistory } from 'react-router';
-import { axios } from '../../config';
+import { axios, headerAuthToken } from '../../config';
+import userTypes from '../users/actions';
 import types from './actionTypes' ;
 import { 
   handleRequestSuccess, 
@@ -12,6 +13,7 @@ export const signInRequest = (credentials) => {
     axios.post(`auth/signin`, credentials)
     .then(response => {
       localStorage.setItem('token', response.data.token);
+      headerAuthToken.set();
       dispatch({ type: types.USER_SIGNIN });
       dispatch(handleRequestSuccess(response));
       browserHistory.push('/dashboard/users');
@@ -28,6 +30,10 @@ export const signOutRequest = () => {
       type: types.USER_SIGNOUT
     })
     localStorage.removeItem('token');
+    headerAuthToken.remove();
+    dispatch({
+      type: userTypes.RESET_USERS_STATE
+    })
     dispatch(handleRequestSuccess({
       data: {
         message: 'Successfully logged out',
