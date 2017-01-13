@@ -46,14 +46,6 @@ class EditUserFormInputs extends Component {
             </Row>
           </Col>
           <Col xs={6}>
-            <br />
-            <Checkbox 
-              inline={true}
-              onChange={()=> this.setState({disabled: !this.state.disabled })}
-            >
-            Check to update password
-            </Checkbox>
-            <br />
             <label>New Password</label>
             <Control 
               model="editUser.password" 
@@ -61,6 +53,7 @@ class EditUserFormInputs extends Component {
               type='password'
               disabled={this.state.disabled}
             />
+            <br />
             <label>Confirm New Password</label>
             <Control 
               model="editUser.confirmPassword" 
@@ -68,6 +61,19 @@ class EditUserFormInputs extends Component {
               type="password"
               disabled={this.state.disabled}
             />
+            <br />
+            <Control
+              className='pull-right' 
+              model='editUser.checkbox'
+              type='checkbox'
+              name='checkbox'
+              onChange={()=> this.setState({ disabled: !this.state.disabled }) }
+            />
+            <span className='text-primary'>
+              <strong>
+              Check to update password:
+              </strong>
+            </span>
           </Col>
         </Row>
       </Grid>
