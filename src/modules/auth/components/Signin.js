@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, ControlLabel, FormControl, 
   Button, Grid, Row, Col } from 'react-bootstrap';
+import FlashMessage from '../../common/components/FlashMessage';
 
 const Signin = ({submitHandler}) => {
   return(
@@ -18,6 +19,8 @@ const Signin = ({submitHandler}) => {
               <FormControl 
                 type='text' 
                 name='password'  />
+              <br />
+              <FlashMessage />
               <br />
               <Button 
                 type='submit' 
