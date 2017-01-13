@@ -64,6 +64,11 @@ export const createUserSubmit = (newUser) => {
 }
 
 export const editUserSubmit = (updatedUser) => {
+  for (let key in updatedUser) {
+    if (!updatedUser[key]) {
+      delete updatedUser[key];
+    }
+  }
   return dispatch => {
     axios.put(`api/users/${updatedUser._id}`, updatedUser)
     .then(response => {
