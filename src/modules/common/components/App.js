@@ -14,7 +14,6 @@ class App extends Component {
     this.props.signInRequest(creds);
   }
   renderBody() {
-
     if (this.props.authenticated) {
       return this.props.children;
     }
