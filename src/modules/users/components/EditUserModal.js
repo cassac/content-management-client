@@ -16,7 +16,16 @@ class EditUserModal extends Component {
       ...vals,
       _id: this.props.users.editUserId,
     }
-    this.props.submitEdit(updatedUser)
+    const checked = document.getElementById('editUserForm')
+                      .elements
+                      .checkbox
+                      .checked;
+    if (!checked) {
+      // validate passwords match and have a length
+      updatedUser.password = null;
+      updatedUser.confirmPassword = null;
+    }
+    this.props.submitEdit(updatedUser);
   }
   render() {
     const { users } = this.props;
@@ -31,8 +40,11 @@ class EditUserModal extends Component {
         show={this.props.users.editUserModalOpen} 
         onHide={ () => this.props.onModalClick(user) }
       >
-        <Form model="form.editUser"
-          onSubmit={ this.handleSubmit.bind(this) }>
+        <Form 
+          id='editUserForm'
+          model="form.editUser"
+          onSubmit={ this.handleSubmit.bind(this) }
+        >
           <Modal.Header closeButton>
             <Modal.Title>
               {`Edit ${user.username}'s profile`}
