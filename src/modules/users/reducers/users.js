@@ -85,6 +85,8 @@ const users = (state = initialState, action) => {
         ...state,
         results: state.results.slice().sort(sortBy), // use slice to copy array
       }
+    case types.RESET_USERS_STORE:
+      return initialState;
     default:
       return state;
   }
