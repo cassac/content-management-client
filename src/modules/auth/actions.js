@@ -12,14 +12,19 @@ export const signInRequest = (credentials) => {
   return dispatch => {
     axios.post(`auth/signin`, credentials)
     .then(response => {
-      localStorage.setItem('token', response.data.token);
-      headerAuthToken.set();
-      dispatch({ type: types.USER_SIGNIN });
-      dispatch(handleRequestSuccess(response));
-      browserHistory.push('/dashboard/users');
+      if (response.data.success) {
+        localStorage.setItem('token', response.data.token);
+        headerAuthToken.set();
+        dispatch({ type: types.USER_SIGNIN });
+        dispatch(handleRequestSuccess(response));
+        browserHistory.push('/dashboard/users');
+      }
+      else {
+        dispatch(handleRequestError(response));
+      }
     })
     .catch(error => {
-      dispatch(handleRequestError(error));
+      dispatch(handleRequestFail(error));
     })
   }
 }
