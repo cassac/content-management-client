@@ -6,7 +6,8 @@ const initialState = {
   email: null,
   company: null,
   password: null,
-  confirmPassword: null
+  confirmPassword: null,
+  checkbox: null
 };
 
 const editUser = (state = initialState, action) => {
