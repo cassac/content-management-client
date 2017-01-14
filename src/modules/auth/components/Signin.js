@@ -17,7 +17,7 @@ const Signin = ({submitHandler}) => {
                 name='username' />
               <ControlLabel>Password</ControlLabel>
               <FormControl 
-                type='text' 
+                type='password' 
                 name='password'  />
               <br />
               <FlashMessage />
