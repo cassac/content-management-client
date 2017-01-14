@@ -21,7 +21,7 @@ module.exports = {
       axios.defaults.headers.common['authorization'] = null;      
     }
   },
-  userSearchCriteria: [
+  userFilterCriteria: [
     'Username',
     'Company',
     'Email',

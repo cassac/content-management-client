@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sortUsersBy } from '../actions';
-import { userSearchCriteria } from '../../../config.js';
+import { userFilterCriteria } from '../../../config.js';
 import { Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
 
 class SortBar extends Component {
   render() {
     const createSortToggles = () => {
-      return userSearchCriteria.map(item => {
+      return userFilterCriteria.map(item => {
         return (
           <Col xs={2} key={item}> 
             <Row className="show-grid" className="text-center">

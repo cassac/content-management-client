@@ -1,4 +1,4 @@
-import { userSearchCriteria } from '../../../config';
+import { userFilterCriteria } from '../../../config';
 import types from '../actionTypes';
 
 const initialState = {
@@ -92,8 +92,8 @@ const users = (state = initialState, action) => {
       // loop over criteria declared in config. use
       // filterTerm as a filter for user object values
       const filtered = state.results.filter(user => {
-        for (let i = 0; i < userSearchCriteria.length; i++) {
-         const criteria = userSearchCriteria[i].toLowerCase();
+        for (let i = 0; i < userFilterCriteria.length; i++) {
+         const criteria = userFilterCriteria[i].toLowerCase();
           let data = String(user[criteria]);
           if (data.toLowerCase().indexOf(action.filterTerm.toLowerCase()) !== -1) {
             return user;
