@@ -25,6 +25,6 @@ module.exports = {
     'Username',
     'Company',
     'Email',
-    'Surname'
+    'Name'
   ],
 }
