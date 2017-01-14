@@ -4,6 +4,15 @@ import { Glyphicon, Button, Row, Col } from 'react-bootstrap';
 import { verticalAlign } from '../../../style.js';
 
 const UserListItem = ({user, onEditUserModalClick, onDeleteUserModalClick}) => {
+  const renderName = (user) => {
+    if (!user.firstName && !user.lastName) return;
+    else if (user.firstName && user.lastName) {
+      return user.firstName + ' ' + user.lastName;
+    }
+    else {
+      return user.firstName ? user.firstName : user.lastName;
+    }
+  }
   return (
     <Row 
       className="show-grid userListItem" 
@@ -19,7 +28,7 @@ const UserListItem = ({user, onEditUserModalClick, onDeleteUserModalClick}) => {
         <p>{user.email}</p>
       </Col>
       <Col xs={2}>
-        <p>{user.lastname}</p>
+        <p>{ renderName(user) }</p>
       </Col>
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
