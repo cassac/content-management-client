@@ -10,6 +10,8 @@ const initialState = {
   editUserId: null,
   editUsername: null,
   editUserEmail: null,
+  editUserFirstName: null,
+  editUserLastName: null,
   editUserCompany: null,
   deleteUserModalOpen: false,
   deleteUserId: null,
@@ -42,6 +44,8 @@ const users = (state = initialState, action) => {
         editUserId: state.editUserModalOpen ? null : action.user._id,
         editUsername: state.editUserModalOpen ? null : action.user.username,
         editUserEmail: state.editUserModalOpen ? null : action.user.email,
+        editUserFirstName: state.editUserModalOpen ? null : action.user.firstName,
+        editUserLastName: state.editUserModalOpen ? null : action.user.lastName,
         editUserCompany: state.editUserModalOpen ? null : action.user.company,
       }
     case types.EDIT_USER_SUCCESS:

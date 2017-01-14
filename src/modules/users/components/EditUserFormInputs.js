@@ -35,6 +35,24 @@ class EditUserFormInputs extends Component {
               <br/>
               </Col>
               <Col>
+                <label>First name</label>
+                <Control.text 
+                  model="editUser.firstName" 
+                  defaultValue={this.props.users.editUserFirstName || ''}
+                  className='form-control'
+                />
+              <br/>
+              </Col>
+              <Col>
+                <label>Last name</label>
+                <Control.text 
+                  model="editUser.lastName" 
+                  defaultValue={this.props.users.editUserLastName || ''}
+                  className='form-control'
+                />
+              <br/>
+              </Col>
+              <Col>
                 <label>Company</label>
                 <Control.text 
                   model="editUser.company" 

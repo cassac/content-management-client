@@ -33,6 +33,8 @@ class EditUserModal extends Component {
       _id: users.editUserId,
       username: users.editUsername,
       email: users.editUserEmail,
+      firstName: users.editUserFirstName,
+      lastName: users.editUserLastName,
       company: users.editUserCompany
     }
     return (
