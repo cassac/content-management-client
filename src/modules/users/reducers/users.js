@@ -1,7 +1,10 @@
+import { userSearchCriteria } from '../../../config';
 import types from '../actionTypes';
 
 const initialState = {
   results: [],
+  filteredResults: [],
+  filterTerm: null,
   createUserModalOpen: false,
   editUserModalOpen: false,
   editUserId: null,
@@ -84,6 +87,23 @@ const users = (state = initialState, action) => {
       return {
         ...state,
         results: state.results.slice().sort(sortBy), // use slice to copy array
+      }
+    case types.FILTER_USERS:
+      // loop over criteria declared in config. use
+      // filterTerm as a filter for user object values
+      const filtered = state.results.filter(user => {
+        for (let i = 0; i < userSearchCriteria.length; i++) {
+         const criteria = userSearchCriteria[i].toLowerCase();
+          let data = String(user[criteria]);
+          if (data.indexOf(action.filterTerm) !== -1) {
+            return user;
+          }
+        }
+      })
+      return {
+        ...state,
+        filterTerm: action.filterTerm,
+        filteredResults: filtered
       }
     case types.RESET_USERS_STORE:
       return initialState;
