@@ -28,6 +28,10 @@ class UserList extends Component {
       this.addListeners();
     }
   }
+  componentDidUpdate() {
+    // add listeners to newly created user dom element
+    this.addListeners();
+  }
   renderUsers() {
     return this.props.users.map(user => (
         <UserListItem 
