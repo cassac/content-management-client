@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { userFilterCriteria } from '../../../config';
 import { filterUsers } from '../actions';
 
 class SearchBar extends Component {
@@ -11,16 +12,11 @@ class SearchBar extends Component {
     return (
       <form>
         <FormGroup>
-          <InputGroup>
-            <FormControl 
-              placeholder='Search for users by name, username or company'
-              type="text" 
-              onChange={ this.onChangeHandler.bind(this) }
-            />
-            <InputGroup.Button>
-              <Button bsStyle="primary">Search</Button>
-            </InputGroup.Button>
-          </InputGroup>
+          <FormControl 
+            placeholder={`Filter users by ${ userFilterCriteria.join(', ') }`}
+            type="text" 
+            onChange={ this.onChangeHandler.bind(this) }
+          />
         </FormGroup>
       </form>
     )
