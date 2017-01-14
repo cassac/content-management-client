@@ -77,15 +77,15 @@ const users = (state = initialState, action) => {
       const sortBy = (a, b) => {
         if (action.direction === 'ascending') {
           if (a[action.criteria.toLowerCase()] < b[action.criteria.toLowerCase()]) {
-            return -1;
-          }
-          return 1;
-        }
-        else { // descending
-          if (a[action.criteria.toLowerCase()] < b[action.criteria.toLowerCase()]) {
             return 1;
           }
           return -1;
+        }
+        else { // descending
+          if (a[action.criteria.toLowerCase()] < b[action.criteria.toLowerCase()]) {
+            return -1;
+          }
+          return 1;
         }
       }
       return {

@@ -16,18 +16,18 @@ class SortBar extends Component {
               </Col>
               <Col xs={12} className="text-center" > 
                 <Button
-                  title={`${item} Ascending`}
-                  bsSize="xsmall" 
-                  onClick={ () => this.props.onSortClick(item, 'ascending') }
-                >
-                  <Glyphicon glyph="arrow-up" />
-                </Button>
-                <Button
                   title={`${item} Descending`}
                   bsSize="xsmall" 
-                  onClick={ ()=> this.props.onSortClick(item, 'descending') }
+                  onClick={ () => this.props.onSortClick(item, 'descending') }
                 >
                   <Glyphicon glyph="arrow-down" />
+                </Button>
+                <Button
+                  title={`${item} Ascending`}
+                  bsSize="xsmall" 
+                  onClick={ ()=> this.props.onSortClick(item, 'ascending') }
+                >
+                  <Glyphicon glyph="arrow-up" />
                 </Button>
               </Col>
             </Row>
