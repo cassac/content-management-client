@@ -3,6 +3,8 @@ import types from '../actionTypes';
 const initialState = {
   username: null,
   email: null,
+  firstName: null,
+  lastName: null,
   company: null,
   password: null,
   confirmPassword: null
