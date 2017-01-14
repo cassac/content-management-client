@@ -95,7 +95,7 @@ const users = (state = initialState, action) => {
         for (let i = 0; i < userSearchCriteria.length; i++) {
          const criteria = userSearchCriteria[i].toLowerCase();
           let data = String(user[criteria]);
-          if (data.indexOf(action.filterTerm) !== -1) {
+          if (data.toLowerCase().indexOf(action.filterTerm.toLowerCase()) !== -1) {
             return user;
           }
         }
