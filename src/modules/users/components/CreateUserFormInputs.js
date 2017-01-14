@@ -38,6 +38,22 @@ const CreateUserFormInputs = ({renderErrors}) => {
             />
           </Col>
           <Col>
+            <label>First name</label>
+            <Control.text 
+              model="createUser.firstName" 
+              className='form-control'
+              required
+            />
+          </Col>
+          <Col>
+            <label>Last name</label>
+            <Control.text 
+              model="createUser.lastName" 
+              className='form-control'
+              required
+            />
+          </Col>
+          <Col>
             <label>Company</label>
             <Control.text 
               model="createUser.company" 
