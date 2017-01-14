@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-const Navigation = ({authenticated, signOutRequest}) => {
+const Navigation = ({isAdmin, authenticated, signOutRequest}) => {
+  const renderAdmin = () => {
+    if (isAdmin) {
+      return (
+        <LinkContainer to='/dashboard/users'>
+          <NavItem>Users</NavItem>
+        </LinkContainer>
+      )
+    }
+    return;    
+  }
   const renderAuth = () => {
     if (authenticated) {
       return (
         <Navbar.Collapse>
           <Nav pullRight>
-            <LinkContainer to='/dashboard/users'>
-              <NavItem>Users</NavItem>
-            </LinkContainer>
-            <LinkContainer to='/dashboard/files'>
-              <NavItem>Files</NavItem>
-            </LinkContainer>
+            { renderAdmin() }
             <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
-              <LinkContainer to='/dashboard/profile'>
-                <MenuItem eventKey={3.1}>Profile</MenuItem>
-              </LinkContainer>
+              <MenuItem onClick={ () => console.log('Launch Modal To Edit Profile') }>Edit Profile</MenuItem>
               <MenuItem divider />
               <LinkContainer 
                 to='/dashboard/signin'
