@@ -20,20 +20,23 @@ class UserList extends Component {
     });
   }
   componentDidMount() {
-    // Initial user request and add event listeners
+    // Initial component mount
     if (!this.props.users.length) {
       this.props.getUsers(this.addListeners);
     }
     else {
+    // Subsequent mounts
       this.addListeners();
     }
   }
   componentDidUpdate() {
-    // add listeners to newly created user dom element
+    // add listeners to newly created user DOM element
     this.addListeners();
   }
   renderUsers() {
-    return this.props.users.map(user => (
+    const { users, filteredUsers, filterTerm } = this.props;
+    const results = filterTerm ? filteredUsers : users;
+    return results.map(user => (
         <UserListItem 
           key={user._id}
           user={user}
@@ -53,7 +56,9 @@ class UserList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.results
+    users: state.users.results,
+    filteredUsers: state.users.filteredResults,
+    filterTerm: state.users.filterTerm
   }
 }
 
