@@ -2,7 +2,8 @@ import types from '../actionTypes';
 
 const initialState = {
   authenticated: localStorage.token ? true : false,
-  // authenticated: false
+  // authenticated: false,
+  isAdmin: false,
 }
 
 const auth = (state = initialState, action) => {
@@ -10,10 +11,12 @@ const auth = (state = initialState, action) => {
     case types.USER_SIGNIN:
       return {
         authenticated: true,
+        isAdmin: action.payload.isAdmin,
       }
     case types.USER_SIGNOUT:
       return {
         authenticated: false,
+        isAdmin: false,
       }
     default:
       return state;
