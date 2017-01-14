@@ -15,6 +15,13 @@ export const sortUsersBy = (criteria, direction) => {
   }
 }
 
+export const filterUsers = (filterTerm) => {
+  return {
+    type: usersTypes.FILTER_USERS,
+    filterTerm
+  }
+}
+
 export const deleteUserSubmit = (userId) => {
   return dispatch => {
     axios.delete(`api/users/${userId}`)
