@@ -93,17 +93,15 @@ const users = (state = initialState, action) => {
         results: state.results.slice().sort(sortBy), // use slice to copy array
       }
     case types.FILTER_USERS:
-      // loop over criteria declared in config. use
-      // filterTerm as a filter for user object values
+      // use filterTerm as a filter for user object values
       const filtered = state.results.filter(user => {
-        for (let i = 0; i < userFilterCriteria.length; i++) {
-         const criteria = userFilterCriteria[i].toLowerCase();
-          let data = String(user[criteria]);
-          if (data.toLowerCase().indexOf(action.filterTerm.toLowerCase()) !== -1) {
+        for (let k in user) {
+          const value = String(user[k]);
+          if (value.toLowerCase().indexOf(action.filterTerm.toLowerCase()) !== -1) {
             return user;
           }
         }
-      })
+      });
       return {
         ...state,
         filterTerm: action.filterTerm,
