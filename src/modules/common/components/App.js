@@ -14,16 +14,18 @@ class App extends Component {
     this.props.signInRequest(creds);
   }
   renderBody() {
-    if (this.props.authenticated) {
+    if (this.props.auth.authenticated) {
       return this.props.children;
     }
     return <Signin submitHandler={ this.submitHandler.bind(this) } />
   }
   render() {
+    const { auth } = this.props;
     return (
       <div>
         <Navigation 
-          authenticated={this.props.authenticated}
+          isAdmin={ auth.isAdmin }
+          authenticated={ auth.authenticated }
           signOutRequest={ this.props.signOutRequest }
          />
         <div className='container'>
@@ -36,10 +38,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    authenticated: state.auth.authenticated
+    auth: state.auth
   }
 }
-
-
 
 export default connect(mapStateToProps, actions)(App);
