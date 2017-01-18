@@ -54,7 +54,7 @@ class UserList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     users: state.users.results,
     filteredUsers: state.users.filteredResults,
@@ -62,15 +62,15 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onEditUserModalClick: (user) => {
+    onEditUserModalClick: user => {
       dispatch(toggleEditUserModal(user));
     },
-    onDeleteUserModalClick: (user) => {
+    onDeleteUserModalClick: user => {
       dispatch(toggleDeleteUserModal(user));
     },
-    getUsers: (cb) => {
+    getUsers: cb => {
       dispatch(getUsers(cb));
     }
   }
