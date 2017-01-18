@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import FlashMessage from '../../common/components/FlashMessage';
+import CreateFileModal from './CreateFileModal';
+import FilesList from './FilesList';
 
 const UserFiles = ({params}) => {
   return (
@@ -15,6 +17,8 @@ const UserFiles = ({params}) => {
           </Col>
         </Row>
       </Grid>
+      <CreateFileModal />
+      <FilesList />
     </div>
   )
 }
