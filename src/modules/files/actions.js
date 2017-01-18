@@ -26,6 +26,27 @@ export const toggleDeleteFileModal = file => {
   }
 }
 
+export const getUserFiles = userId => {
+  return dispatch => {
+    axios.get(`api/users/${userId}/files`)
+    .then(response => {
+      if (response.data.success) {
+        dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: fileTypes.REQUEST_USER_FILES,
+          payload: response.data.results          
+        });
+      }
+      else {
+        dispatch(handleRequestError(response));
+      }
+    })
+    .catch(error => {
+      dispatch(handleRequestFail(response));
+    })
+  }
+}
+
 export const createFileSubmit = (userId, file) => {
   return dispatch => {
     axios.post(`api/users/${userId}/file`, file)
