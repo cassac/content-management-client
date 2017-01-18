@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-// import { persistStore } from 'redux-persist';
+import { persistStore } from 'redux-persist';
 import storeConfig from './reducers';
 import App from './modules/common/components/App';
 import Signin from './modules/auth/components/Signin';
@@ -11,7 +11,7 @@ import UserFiles from './modules/files/components/UserFiles';
 import { requireAuth } from './modules/auth/components/auth';
 
 const store = storeConfig();
-// persistStore(store);
+persistStore(store);
 
 render(
   <Provider store={store}>
