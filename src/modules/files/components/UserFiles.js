@@ -1,7 +1,8 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import FlashMessage from '../../common/components/FlashMessage';
-// import DeleteFileModal from './DeleteFileModal';
+import UploadFileModal from './UploadFileModal';
+// import DeleteFil`eModal from './DeleteFileModal';
 import FilesList from './FilesList';
 
 const UserFiles = ({params}) => {
@@ -17,6 +18,7 @@ const UserFiles = ({params}) => {
           </Col>
         </Row>
       </Grid>
+      <UploadFileModal />
       <FilesList />
     </div>
   )
