@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from 'react-bootstrap';
 import FilesListItem from './FilesListItem';
-
-import { toggleEditFileModal, toggleDeleteFileModal, getFiles } from '../actions';
+import { toggleEditFileModal, toggleDeleteFileModal, getUserFiles } from '../actions';
 
 class FilesList extends Component {
+  componentDidMount() {
+    this.props.getUserFiles();
+  }
   render() {
     return(
       <Grid className='text-center'>
@@ -32,6 +34,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onEditFileModalClick: file => dispatch(toggleEditFileModal(file)),
     onDeleteFileModalClick: file => dispatch(toggleDeleteFileModal(file)),
+    getUserFiles: () => dispatch(getUserFiles()),
   }
 }
 
