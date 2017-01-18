@@ -40,3 +40,45 @@ export const createFileSubmit = (userId, file) => {
     })
   }
 }
+
+export const editFileSubmit = (userId, file) => {
+  return dispatch => {
+    axios.put(`api/users/${userId}/file/${file._id}`, file)
+    .then(response => {
+      if (response.data.success) {
+        dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: fileTypes.EDIT_FILE_SUCCESS,
+          payload: response.data.results,
+        });
+      }
+      else {
+        dispatch(handleRequestError(response));
+      }
+    })
+    .catch(error => {
+      dispatch(handleRequestFail(response));
+    })
+  }
+}
+
+export const deleteFileSubmit = (userId, file) => {
+  return dispatch => {
+    axios.delete(`api/users/${userId}/file/${file._id}`)
+    .then(response => {
+      if (response.data.success) {
+        dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: fileTypes.DELETE_FILE_SUCCESS,
+          payload: {_id: file._id},
+        });
+      }
+      else {
+        dispatch(handleRequestError(response));
+      }
+    })
+    .catch(error => {
+      dispatch(handleRequestFail(response));
+    })
+  }
+}
