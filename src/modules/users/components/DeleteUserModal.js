@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { handleRequestError } from '../../common/actions';
 import { toggleDeleteUserModal, deleteUserSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import FlashMessage from '../../common/components/FlashMessage';
@@ -9,7 +10,12 @@ class DeleteUserModal extends Component {
     e.preventDefault();
     const { deleteUsername, deleteUserId } = this.props.users;
     if (e.target.username.value !== deleteUsername) {
-      this.setState({errors: 'Usernames don\'t match'})
+      this.props.submitError({
+        data: {
+          success: false,
+          message: 'Usernames don\'t match'
+        },
+      })
       return;
     }
     this.props.submitDelete(deleteUserId);
@@ -68,12 +74,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onModalClick: user => {
-      dispatch(toggleDeleteUserModal(user));
-    },
-    submitDelete: user => {
-      dispatch(deleteUserSubmit(user));
-    }
+    onModalClick: user => dispatch(toggleDeleteUserModal(user)),
+    submitDelete: user => dispatch(deleteUserSubmit(user)),
+    submitError: error => dispatch(handleRequestError(error)),
   }
 }
 
