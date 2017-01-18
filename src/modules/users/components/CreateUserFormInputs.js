@@ -3,7 +3,7 @@ import { Control, Form } from 'react-redux-form';
 import { Grid, Row, Col } from 'react-bootstrap';
 import FlashMessage from '../../common/components/FlashMessage';
 
-const CreateUserFormInputs = ({renderErrors}) => {
+const CreateUserFormInputs = () => {
   return (
     <Grid style={{width: 'inherit'}}>
     <Row>
