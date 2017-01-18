@@ -6,9 +6,9 @@ import {
   handleRequestFail 
 } from '../common/actions';
 
-export const toggleCreateFileModal = () => {
+export const toggleUploadFileModal = () => {
   return {
-    type: fileTypes.CREATE_FILE_MODAL_OPEN,
+    type: fileTypes.UPLOAD_FILE_MODAL_OPEN,
   }
 }
 
@@ -47,14 +47,14 @@ export const getUserFiles = userId => {
   }
 }
 
-export const createFileSubmit = (userId, file) => {
+export const uploadFileSubmit = (userId, file) => {
   return dispatch => {
     axios.post(`api/users/${userId}/file`, file)
     .then(response => {
       if (response.data.success) {
         dispatch(handleRequestSuccess(response));
         dispatch({
-          type: fileTypes.CREATE_FILE_SUCCESS,
+          type: fileTypes.UPLOAD_FILE_SUCCESS,
           payload: response.data.results
         });
       }

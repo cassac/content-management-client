@@ -2,7 +2,7 @@ import types from '../actionTypes';
 
 const initialState = {
   results: [],
-  createFileModalOpen: false,
+  uploadFileModalOpen: false,
   editFileModalOpen: false,
   editFileId: null,
   editFileComment: null,
@@ -16,12 +16,12 @@ const files = (state = initialState, action) => {
         ...state,
         ...action.payload
       }
-    case types.CREATE_FILE_MODAL_OPEN:
+    case types.UPLOAD_FILE_MODAL_OPEN:
       return {
         ...state,
-        createFileModalOpen: !state.createFileModalOpen,
+        uploadFileModalOpen: !state.uploadFileModalOpen,
       }
-    case types.CREATE_FILE_SUCCESS:
+    case types.UPLOAD_FILE_SUCCESS:
       return {
         ...state,
         results: [...state.results, action.payload],
