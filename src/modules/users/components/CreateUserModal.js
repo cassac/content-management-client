@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form } from 'react-redux-form';
+import { handleRequestError } from '../../common/actions';
 import { toggleCreateUserModal, createUserSubmit} from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import CreateUserFormInputs from './CreateUserFormInputs';
@@ -8,7 +9,12 @@ import CreateUserFormInputs from './CreateUserFormInputs';
 class CreateUserModal extends Component {
   handleSubmit(vals) {
     if (vals.password !== vals.confirmPassword) {
-      this.setState({errors: 'Passwords don\'t match'})
+      this.props.submitError({
+        data: {
+          success: false,
+          message: 'Passwords don\'t match'
+        },
+      })
       return;
     }
     this.props.submitCreate(vals);
@@ -56,20 +62,17 @@ class CreateUserModal extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     users: state.users,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onModalClick: () => {
-      dispatch(toggleCreateUserModal());
-    },
-    submitCreate: newUser => {
-      dispatch(createUserSubmit(newUser));
-    }
+    onModalClick: () => dispatch(toggleCreateUserModal()),
+    submitCreate: newUser => dispatch(createUserSubmit(newUser)),
+    submitError: error => dispatch(handleRequestError(error)),
   }
 }
 
