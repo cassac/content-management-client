@@ -9,6 +9,9 @@ import {
   editUser, 
   createUser, 
 } from './modules/users/reducers/index';
+import {
+  files,
+} from './modules/files/reducers/index';
 import { auth } from './modules/auth/reducers/index';
 import { combineForms } from 'react-redux-form';
 import thunk from 'redux-thunk';
@@ -25,6 +28,7 @@ const rootReducer = combineReducers({
   users,
   requests,
   form,
+  files,
 });
 
 const storeConfig = (initialState) => {
