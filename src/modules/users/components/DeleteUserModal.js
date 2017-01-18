@@ -68,7 +68,6 @@ class DeleteUserModal extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.users,
-    requests: state.requests
   }
 }
 
