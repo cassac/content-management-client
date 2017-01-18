@@ -1,6 +1,5 @@
 import { axios } from '../../config';
 import usersTypes from './actionTypes';
-import commonTypes from '../common/actionTypes';
 import { 
   handleRequestSuccess, 
   handleRequestError, 
