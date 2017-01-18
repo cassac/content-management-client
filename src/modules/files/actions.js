@@ -1,21 +1,42 @@
-import types from './actionTypes';
+import fileTypes from './actionTypes';
 
 export const toggleCreateFileModal = () => {
   return {
-    type: types.CREATE_FILE_MODAL_OPEN,
+    type: fileTypes.CREATE_FILE_MODAL_OPEN,
   }
 }
 
 export const toggleEditFileModal = file => {
   return {
-    type: types.EDIT_FILE_MODAL_OPEN,
+    type: fileTypes.EDIT_FILE_MODAL_OPEN,
     file
   }
 }
 
 export const toggleDeleteFileModal = file => {
   return {
-    type: types.DELETE_FILE_MODAL_OPEN,
+    type: fileTypes.DELETE_FILE_MODAL_OPEN,
     file
+  }
+}
+
+export const createFileSubmit = (userId, file) => {
+  return dispatch => {
+    axios.post(`api/users/${userId}/file`, file)
+    .then(response => {
+      if (response.data.success) {
+        dispatch(handleRequestSuccess(response));
+        dispatch({
+          type: fileTypes.CREATE_FILE_SUCCESS,
+          payload: response.data.results
+        });
+      }
+      else {
+        dispatch(handleRequestError(response));
+      }
+    })
+    .catch(error => {
+      dispatch(handleRequestFail(response));
+    })
   }
 }
