@@ -4,6 +4,8 @@ const initialState = {
   results: [],
   createFileModalOpen: false,
   editFileModalOpen: false,
+  editFileId: null,
+  editFileComment: null,
   deleteFileModalOpen: false,
 }
 
@@ -18,6 +20,8 @@ const files = (state = initialState, action) => {
       return {
         ...state,
         editFileModalOpen: !state.editFileModalOpen,
+        editFileId: state.editFileModalOpen ? null : action.file._id,
+        editFileComment: state.editFileModalOpen ? null : action.file.comment,
       }
     case types.DELETE_FILE_MODAL_OPEN:
       return {
