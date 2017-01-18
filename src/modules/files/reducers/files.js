@@ -11,6 +11,11 @@ const initialState = {
 
 const files = (state = initialState, action) => {
   switch (action.type) {
+    case types.REQUEST_USER_FILES:
+      return {
+        ...state,
+        ...action.payload
+      }
     case types.CREATE_FILE_MODAL_OPEN:
       return {
         ...state,
@@ -53,3 +58,5 @@ const files = (state = initialState, action) => {
       return state;
   }
 }
+
+export default files;
