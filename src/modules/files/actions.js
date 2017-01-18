@@ -1,4 +1,10 @@
+import { axios } from '../../config';
 import fileTypes from './actionTypes';
+import { 
+  handleRequestSuccess, 
+  handleRequestError, 
+  handleRequestFail 
+} from '../common/actions';
 
 export const toggleCreateFileModal = () => {
   return {
