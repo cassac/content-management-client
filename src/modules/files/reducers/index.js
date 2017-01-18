@@ -1,4 +1,4 @@
-import users from './files';
+import files from './files';
 
 module.exports = {
   files,
