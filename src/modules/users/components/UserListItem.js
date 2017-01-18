@@ -33,7 +33,7 @@ const UserListItem = ({user, onEditUserModalClick, onDeleteUserModalClick}) => {
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
           <Col xs={4}>
-            <Link to={`/dashboard/user/${user._id}/files`} >
+            <Link to={`/dashboard/${user.username}/files`} >
               <Glyphicon 
                 glyph="list-alt" 
                 title={`View ${user.username}'s files`}
