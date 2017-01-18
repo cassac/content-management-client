@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid } from 'react-bootstrap';
 import UserListItem from './UserListItem';
 import { toggleEditUserModal, toggleDeleteUserModal, getUsers } from '../actions';
 
