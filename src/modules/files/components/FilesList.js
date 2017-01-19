@@ -5,8 +5,26 @@ import FilesListItem from './FilesListItem';
 import { toggleEditFileModal, toggleDeleteFileModal, getUserFiles } from '../actions';
 
 class FilesList extends Component {
+  addListeners() {
+    // Attach event listeners to list item elements
+    const listItems = document.querySelectorAll('.userListItem');
+    listItems.forEach(item => {
+      item.addEventListener('mouseenter', ({target}) => {
+        target.classList.add('hoverItem');
+        target.lastChild.classList.remove('showOnHover');
+      });
+      item.addEventListener('mouseleave', ({target}) => {
+        target.classList.remove('hoverItem');
+        target.lastChild.classList.add('showOnHover');
+      });
+    });
+  }
   componentDidMount() {
     this.props.getUserFiles(this.props.userId);
+    const that = this;
+    setTimeout(function() {
+      that.addListeners();
+    }, 1000)
   }
   render() {
     return(
