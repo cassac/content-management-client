@@ -37,7 +37,6 @@ const UserListItem = ({user, onEditUserModalClick, onDeleteUserModalClick}) => {
               <Glyphicon 
                 glyph="list-alt" 
                 title={`View ${user.username}'s files`}
-                onClick={ () => console.log(`View ${user.username}'s files`) }
               />
             </Link>
           </Col>
