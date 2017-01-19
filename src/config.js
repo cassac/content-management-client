@@ -11,7 +11,15 @@ axios.defaults.validateStatus = function (status) {
 }
 
 module.exports = {
+  // Configuration
+  userFilterCriteria: [
+    'Username',
+    'Company',
+    'Email',
+    'Name'
+  ],
   axios,
+  // Helpers
   headerAuthToken: {
     set: () => {
       axios.defaults.headers.common['authorization'] = localStorage.token;
@@ -20,10 +28,17 @@ module.exports = {
       axios.defaults.headers.common['authorization'] = null;      
     }
   },
-  userFilterCriteria: [
-    'Username',
-    'Company',
-    'Email',
-    'Name'
-  ],
+  attachListeners: () => {
+    const listItems = document.querySelectorAll('.userListItem');
+    listItems.forEach(item => {
+      item.addEventListener('mouseenter', ({target}) => {
+        target.classList.add('hoverItem');
+        target.lastChild.classList.remove('showOnHover');
+      });
+      item.addEventListener('mouseleave', ({target}) => {
+        target.classList.remove('hoverItem');
+        target.lastChild.classList.add('showOnHover');
+      });
+    });
+  }
 }
