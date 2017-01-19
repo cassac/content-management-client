@@ -47,9 +47,9 @@ export const getUserFiles = userId => {
   }
 }
 
-export const uploadFileSubmit = (userId, file) => {
+export const uploadFileSubmit = (userId, data) => {
   return dispatch => {
-    axios.post(`api/users/${userId}/file`, file)
+    axios.post(`api/users/${userId}/file`, data)
     .then(response => {
       if (response.data.success) {
         dispatch(handleRequestSuccess(response));
