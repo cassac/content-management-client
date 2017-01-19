@@ -29,7 +29,7 @@ render(
           component={requireAuth(UsersDashboard)} 
         />
         <Route 
-          path='/dashboard/:username/files' 
+          path='/dashboard/:userId/files' 
           component={requireAuth(UserFiles)} 
         />
       </Route>
