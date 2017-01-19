@@ -30,7 +30,7 @@ class UploadFileModal extends Component {
         >
           <form onSubmit={ this.handleSubmit.bind(this) } >
             <Modal.Header closeButton>
-              <Modal.Title>{`Upload file to ${this.props.username} 's account`}</Modal.Title>
+              <Modal.Title>{`Upload file to ${this.props.userId} 's account`}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <UploadFileFormInputs />
