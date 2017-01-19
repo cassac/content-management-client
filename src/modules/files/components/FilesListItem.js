@@ -33,21 +33,21 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
           <Col xs={4}>
             <Glyphicon 
               glyph="download-alt" 
-              title={`View ${file.username}'s files`}
-              onClick={ () => console.log(`View ${file.username}'s files`) }
+              title={`Download file ${parseFilename(file.filePath)}`}
+              onClick={ () => console.log(`Download file ${parseFilename(file.filePath)}`) }
             />
           </Col>
           <Col xs={4}>
             <Glyphicon 
               glyph="pencil" 
-              title={`Edit ${file.username}'s account`}
+              title={`Edit file ${parseFilename(file.filePath)}`}
               onClick={ () => onEditFileModalClick(file) }
             />
           </Col>
           <Col xs={4}>
             <Glyphicon 
               glyph="trash" 
-              title={`Delete ${file.username}'s account`}
+              title={`Delete file ${parseFilename(file.filePath)}`}
               onClick={ () => onDeleteFileModalClick(file) }
             />
           </Col>
