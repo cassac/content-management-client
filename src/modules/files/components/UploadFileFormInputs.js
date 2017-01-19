@@ -9,13 +9,18 @@ const UploadFileFormInputs = () => {
         <Row>
           <Col xs={6} className='text-center'>
             <label className='pull-left'>Upload File</label>
-            <input type='file' className='form-control'/>
+            <input 
+              name='file'
+              type='file' 
+              className='form-control' 
+            />
           </Col>
           <Col xs={6}>
             <Row className="show-grid">
               <Col>
                 <label>Comment</label>
                 <input
+                  name='comment'
                   type='text' 
                   className='form-control'
                   required
