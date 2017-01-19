@@ -11,14 +11,14 @@ const UserFiles = ({params}) => {
       <Grid>
         <Row>
           <Col xs={4}>
-            <h4>{`User ${params.username}'s Files`}</h4>
+            <h4>{`User ${params.userId}'s Files`}</h4>
           </Col>
           <Col xs={4}>
             <FlashMessage />
           </Col>
         </Row>
       </Grid>
-      <UploadFileModal />
+      <UploadFileModal userId={params.userId} />
       <FilesList />
     </div>
   )
