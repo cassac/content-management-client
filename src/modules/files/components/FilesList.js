@@ -11,11 +11,16 @@ import FilesListItem from './FilesListItem';
 
 class FilesList extends Component {
   componentDidMount() {
-    this.props.getUserFiles(this.props.userId);
-    const that = this;
-    setTimeout(function() {
+    if (!this.props.files.length) {
+      this.props.getUserFiles(this.props.userId, attachListeners);
+    }
+    else {
       attachListeners();
-    }, 1000)
+    }
+  }
+  componentDidUpdate() {
+    // add listeners to newly created user DOM element
+    attachListeners();
   }
   render() {
     return(
