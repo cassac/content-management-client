@@ -6,7 +6,7 @@ import { toggleEditFileModal, toggleDeleteFileModal, getUserFiles } from '../act
 
 class FilesList extends Component {
   componentDidMount() {
-    this.props.getUserFiles();
+    this.props.getUserFiles(this.props.userId);
   }
   render() {
     return(
@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onEditFileModalClick: file => dispatch(toggleEditFileModal(file)),
     onDeleteFileModalClick: file => dispatch(toggleDeleteFileModal(file)),
-    getUserFiles: () => dispatch(getUserFiles()),
+    getUserFiles: userId => dispatch(getUserFiles(userId)),
   }
 }
 
