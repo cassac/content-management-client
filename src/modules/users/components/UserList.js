@@ -1,37 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from 'react-bootstrap';
+import { attachListeners } from '../../../config.js';
+import { 
+  toggleEditUserModal, 
+  toggleDeleteUserModal, 
+  getUsers
+} from '../actions';
 import UserListItem from './UserListItem';
-import { toggleEditUserModal, toggleDeleteUserModal, getUsers } from '../actions';
 
 class UserList extends Component {
-  addListeners() {
-    // Attach event listeners to list item elements
-    const listItems = document.querySelectorAll('.userListItem');
-    listItems.forEach(item => {
-      item.addEventListener('mouseenter', ({target}) => {
-        target.classList.add('hoverItem');
-        target.lastChild.classList.remove('showOnHover');
-      });
-      item.addEventListener('mouseleave', ({target}) => {
-        target.classList.remove('hoverItem');
-        target.lastChild.classList.add('showOnHover');
-      });
-    });
-  }
   componentDidMount() {
     // Initial component mount
     if (!this.props.users.length) {
-      this.props.getUsers(this.addListeners);
+      this.props.getUsers(attachListeners);
     }
     else {
     // Subsequent mounts
-      this.addListeners();
+      attachListeners();
     }
   }
   componentDidUpdate() {
     // add listeners to newly created user DOM element
-    this.addListeners();
+    attachListeners();
   }
   renderUsers() {
     const { users, filteredUsers, filterTerm } = this.props;
