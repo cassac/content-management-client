@@ -8,7 +8,11 @@ import UploadFileFormInputs from './UploadFileFormInputs';
 class UploadFileModal extends Component {
   handleSubmit(e) {  
     e.preventDefault();
-    console.log('submitted:', e)
+    const form = e.target;
+    const data = new FormData();
+    data.append('comment', form.comment.value);
+    data.append('file', form.file.files[0]);
+    this.props.submitUpload(this.props.userId, data)
   }
   render() {
     return (
@@ -26,7 +30,7 @@ class UploadFileModal extends Component {
         >
           <form onSubmit={ this.handleSubmit.bind(this) } >
             <Modal.Header closeButton>
-              <Modal.Title>{`Upload file to  's account`}</Modal.Title>
+              <Modal.Title>{`Upload file to ${this.props.username} 's account`}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <UploadFileFormInputs />
