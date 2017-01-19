@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
+import { verticalAlign } from '../../../style.js';
 
 const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
   const parseFilename = (filePath) => {
@@ -13,7 +14,7 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
   return(
     <Row 
       className="show-grid userListItem" 
-      // style={verticalAlign}
+      style={verticalAlign}
     >
       <Col xs={2}>
         <p>{parseFilename(file.filePath)}</p>
@@ -30,13 +31,11 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
           <Col xs={4}>
-            <Link to={`/dashboard/${file.username}/files`} >
-              <Glyphicon 
-                glyph="list-alt" 
-                title={`View ${file.username}'s files`}
-                onClick={ () => console.log(`View ${file.username}'s files`) }
-              />
-            </Link>
+            <Glyphicon 
+              glyph="download-alt" 
+              title={`View ${file.username}'s files`}
+              onClick={ () => console.log(`View ${file.username}'s files`) }
+            />
           </Col>
           <Col xs={4}>
             <Glyphicon 
