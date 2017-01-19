@@ -49,7 +49,7 @@ export const getUserFiles = userId => {
 
 export const uploadFileSubmit = (userId, data) => {
   return dispatch => {
-    axios.post(`api/users/${userId}/file`, data)
+    axios.post(`api/users/${userId}/files`, data)
     .then(response => {
       if (response.data.success) {
         dispatch(handleRequestSuccess(response));
@@ -70,7 +70,7 @@ export const uploadFileSubmit = (userId, data) => {
 
 export const editFileSubmit = (userId, file) => {
   return dispatch => {
-    axios.put(`api/users/${userId}/file/${file._id}`, file)
+    axios.put(`api/users/${userId}/files/${file._id}`, file)
     .then(response => {
       if (response.data.success) {
         dispatch(handleRequestSuccess(response));
@@ -91,7 +91,7 @@ export const editFileSubmit = (userId, file) => {
 
 export const deleteFileSubmit = (userId, file) => {
   return dispatch => {
-    axios.delete(`api/users/${userId}/file/${file._id}`)
+    axios.delete(`api/users/${userId}/files/${file._id}`)
     .then(response => {
       if (response.data.success) {
         dispatch(handleRequestSuccess(response));
