@@ -14,7 +14,7 @@ const files = (state = initialState, action) => {
     case types.REQUEST_USER_FILES:
       return {
         ...state,
-        ...action.payload
+        results: action.payload,
       }
     case types.UPLOAD_FILE_MODAL_OPEN:
       return {
