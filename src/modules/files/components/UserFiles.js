@@ -19,7 +19,7 @@ const UserFiles = ({params}) => {
         </Row>
       </Grid>
       <UploadFileModal userId={params.userId} />
-      <FilesList />
+      <FilesList userId={params.userId} />
     </div>
   )
 }
