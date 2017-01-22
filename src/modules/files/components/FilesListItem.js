@@ -17,7 +17,11 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
       style={verticalAlign}
     >
       <Col xs={2}>
-        <p>{parseFilename(file.filePath)}</p>
+        <p>
+          <a href={ `${file.filePath }` }>
+            {parseFilename(file.filePath)}
+          </a>
+        </p>
       </Col>
       <Col xs={2}>
         <p>{file.contentType}</p>
