@@ -12,8 +12,8 @@ class DeleteFileModal extends Component {
   render() {
     return (
       <Modal 
-        show={this.props.files.deleteFileModalOpen} 
-        onHide={ ()=>this.props.onModalClick(file) }
+        show={this.props.files.deleteFileModalOpen } 
+        onHide={ ()=>this.props.onModalClick() }
       >
         <form onSubmit={ this.handleSubmit.bind(this) } >
           <Modal.Header closeButton>
@@ -36,7 +36,7 @@ class DeleteFileModal extends Component {
             /> 
             <div
               className="btn btn-danger"
-              onClick={ () => this.props.onModalClick(file) }
+              onClick={ () => this.props.onModalClick() }
             >
               Cancel
             </div>
@@ -49,7 +49,7 @@ class DeleteFileModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    files: state.files.results,
+    files: state.files,
   }
 }
 
