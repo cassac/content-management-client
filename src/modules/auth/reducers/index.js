@@ -10,8 +10,8 @@ const auth = (state = initialState, action) => {
   switch (action.type) {
     case types.USER_SIGNIN:
       return {
+        ...action.payload,
         authenticated: true,
-        isAdmin: action.payload.isAdmin,
       }
     case types.USER_SIGNOUT:
       return {
