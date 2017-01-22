@@ -18,7 +18,7 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
     >
       <Col xs={2}>
         <p>
-          <a href={ `${file.filePath }` }>
+          <a href={ `/users/${ file.ownerId }/files/${file._id }` }>
             {parseFilename(file.filePath)}
           </a>
         </p>
@@ -35,11 +35,13 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
           <Col xs={4}>
-            <Glyphicon 
-              glyph="download-alt" 
-              title={`Download file ${parseFilename(file.filePath)}`}
-              onClick={ () => console.log(`Download file ${parseFilename(file.filePath)}`) }
-            />
+            <Link to='share'>
+              <Glyphicon 
+                glyph="download-alt" 
+                title={`Download file ${parseFilename(file.filePath)}`}
+                onClick={ () => console.log(`Download file ${parseFilename(file.filePath)}`) }
+              />
+            </Link>
           </Col>
           <Col xs={4}>
             <Glyphicon 
