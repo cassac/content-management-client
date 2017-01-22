@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import Signin from '../../auth/components/Signin';
-import * as actions from '../../auth/actions';
+import { signInRequest, signOutRequest } from '../../auth/actions';
 
 class App extends Component {
   submitHandler(e) {
@@ -42,4 +42,15 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, actions)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    signInRequest: creds => {
+      dispatch(signInRequest(creds));
+    },
+    signOutRequest: () => {
+      dispatch(signOutRequest());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
