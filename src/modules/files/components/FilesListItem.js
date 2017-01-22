@@ -26,7 +26,7 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
         <p>{parseFileSize(file.fileSize)}</p>
       </Col>
       <Col xs={2}>
-        <p>{file.comment}</p>
+        <p>{file.comment.substr(0, 50)}</p>
       </Col>
       <Col xs={4} className='showOnHover'>
         <Row className="show-grid">
