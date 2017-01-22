@@ -24,7 +24,7 @@ export const signInRequest = (credentials) => {
           browserHistory.push('/dashboard/users');
         }
         else {
-          browserHistory.push(`/dashboard/user/${response.data.results._id}/files`);          
+          browserHistory.push(`/dashboard/${response.data.results._id}/files`);          
         }
       }
       else {
