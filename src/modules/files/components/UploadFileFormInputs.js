@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import FlashMessage from '../../common/components/FlashMessage';
 
-const UploadFileFormInputs = () => {
+const UploadFileFormInputs = ({onChangeHandler}) => {
   return (
     <div>
       <Grid style={{width: 'inherit'}}>
@@ -13,6 +13,7 @@ const UploadFileFormInputs = () => {
               name='file'
               type='file' 
               className='form-control' 
+              onChange={ ({target}) => onChangeHandler(target.name, target.files[0]) }
             />
           </Col>
           <Col xs={6}>
@@ -24,6 +25,7 @@ const UploadFileFormInputs = () => {
                   type='text' 
                   className='form-control'
                   required
+                  onChange={ ({target}) => onChangeHandler(target.name, target.value)  }
                 />
                 <FlashMessage />
               </Col>
