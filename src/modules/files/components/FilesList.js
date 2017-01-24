@@ -11,7 +11,8 @@ import FilesListItem from './FilesListItem';
 
 class FilesList extends Component {
   componentDidMount() {
-    if (!this.props.files.length) {
+    // Prevents unnecesary requests if users files already in store
+    if (!this.props.files.length || this.props.files[0].ownerId !== this.props.userId) {
       this.props.getUserFiles(this.props.userId, attachListeners);
     }
     else {
