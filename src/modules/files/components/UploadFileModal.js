@@ -6,12 +6,23 @@ import { toggleUploadFileModal, uploadFileSubmit } from '../actions';
 import UploadFileFormInputs from './UploadFileFormInputs';
 
 class UploadFileModal extends Component {
+  constructor() {
+    super();
+    this.state = {
+      file: null,
+      comment: null
+    }
+  }
+  onChangeHandler(field, value) {
+    const data = {};
+    data[field] = value;
+    this.setState(data);
+  }
   handleSubmit(e) {  
     e.preventDefault();
-    const form = e.target;
     const data = new FormData();
-    data.append('comment', form.comment.value);
-    data.append('file', form.file.files[0]);
+    data.append('comment', this.state.comment);
+    data.append('file', this.state.file);
     this.props.submitUpload(this.props.userId, data)
   }
   render() {
@@ -33,7 +44,7 @@ class UploadFileModal extends Component {
               <Modal.Title>{`Upload file to ${this.props.userId} 's account`}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <UploadFileFormInputs />
+              <UploadFileFormInputs onChangeHandler={this.onChangeHandler.bind(this)} />
               <FlashMessage />
             </Modal.Body>
             <Modal.Footer>
@@ -66,7 +77,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onModalClick: file => dispatch(toggleUploadFileModal()),
-    submitUpload: file => dispatch(uploadFileSubmit(file)),
+    submitUpload: (userId, file) => dispatch(uploadFileSubmit(userId, file)),
   }
 }
 
