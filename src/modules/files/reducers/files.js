@@ -1,10 +1,12 @@
 import types from '../actionTypes';
+import { parseFilename } from '../../../config';
 
 const initialState = {
   results: [],
   uploadFileModalOpen: false,
   editFileModalOpen: false,
   editFileId: null,
+  editFilename: null,
   editFileComment: null,
   deleteFileModalOpen: false,
 }
@@ -31,7 +33,15 @@ const files = (state = initialState, action) => {
         ...state,
         editFileModalOpen: !state.editFileModalOpen,
         editFileId: state.editFileModalOpen ? null : action.file._id,
+        editFilename: state.editFileModalOpen ? null : parseFilename(action.file.filePath),
         editFileComment: state.editFileModalOpen ? null : action.file.comment,
+        editFileOwnerId: state.editFileModalOpen ? null : action.file.ownerId,
+      }
+    case types.EDIT_FILE_ON_CHANGE:
+      const newState = { ...state };
+      newState[action.payload.field] = action.payload.value; 
+      return {
+        ...newState,
       }
     case types.EDIT_FILE_SUCCESS:
       const { payload } = action;
