@@ -1,16 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
-import { verticalAlign } from '../../../style.js';
+import { verticalAlign } from '../../../style';
+import { parseFilename, parseFileSize } from '../../../config';
+
 
 const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
-  const parseFilename = (filePath) => {
-    const parts = filePath.split('/');
-    return parts[parts.length - 1];
-  }
-  const parseFileSize = (fileSize) => {
-    return parseFloat(fileSize / 1000000).toFixed(3);
-  }
   return(
     <Row 
       className="show-grid userListItem" 
