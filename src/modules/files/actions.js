@@ -58,6 +58,9 @@ export const uploadFileSubmit = (userId, data) => {
           type: fileTypes.UPLOAD_FILE_SUCCESS,
           payload: response.data.results
         });
+        dispatch({
+          type: fileTypes.UPLOAD_FILE_MODAL_OPEN
+        });
       }
       else {
         dispatch(handleRequestError(response));
