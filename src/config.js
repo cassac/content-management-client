@@ -20,6 +20,13 @@ module.exports = {
   ],
   axios,
   // Helpers
+  parseFilename: (filePath) => {
+    const parts = filePath.split('/');
+    return parts[parts.length - 1];
+  },
+  parseFileSize: (fileSize) => {
+    return parseFloat(fileSize / 1000000).toFixed(3); // to MB
+  },
   headerAuthToken: {
     set: () => {
       axios.defaults.headers.common['authorization'] = localStorage.token;
