@@ -72,6 +72,13 @@ export const uploadFileSubmit = (userId, data) => {
   }
 }
 
+export const editFileOnChangeHandler = (field, value) => {
+  return {
+    type: fileTypes.EDIT_FILE_ON_CHANGE,
+    payload: { field, value },
+  }
+}
+
 export const editFileSubmit = (userId, file) => {
   return dispatch => {
     axios.put(`api/users/${userId}/files/${file._id}`, file)
@@ -82,6 +89,9 @@ export const editFileSubmit = (userId, file) => {
           type: fileTypes.EDIT_FILE_SUCCESS,
           payload: response.data.results,
         });
+        dispatch({
+          type: fileTypes.EDIT_FILE_MODAL_OPEN,
+        })
       }
       else {
         dispatch(handleRequestError(response));
