@@ -21,6 +21,7 @@ module.exports = {
   axios,
   // Helpers
   parseFilename: (filePath) => {
+    if (!filePath) return '';
     const parts = filePath.split('/');
     return parts[parts.length - 1];
   },
