@@ -34,7 +34,6 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
               <Glyphicon 
                 glyph="download-alt" 
                 title={`Download file ${parseFilename(file.filePath)}`}
-                onClick={ () => console.log(`Download file ${parseFilename(file.filePath)}`) }
               />
             </a>
           </Col>
