@@ -19,7 +19,7 @@ export const toggleEditFileModal = file => {
   }
 }
 
-export const toggleDeleteFileModal = file => {
+export const toggleDeleteFileModal = (file = {}) => {
   return {
     type: fileTypes.DELETE_FILE_MODAL_OPEN,
     file
