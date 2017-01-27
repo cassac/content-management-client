@@ -3,8 +3,13 @@ import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import Signin from '../../auth/components/Signin';
 import { signInRequest, signOutRequest } from '../../auth/actions';
+import { toggleEditUserModal } from '../../users/actions'; 
+import EditUserModal from '../../users/components/EditUserModal';
 
 class App extends Component {
+  editProfileHandler() {
+    this.props.onEditUserModalClick(this.props.auth);
+  }
   submitHandler(e) {
     e.preventDefault();
     const creds = {
@@ -27,7 +32,9 @@ class App extends Component {
           isAdmin={ auth.isAdmin }
           authenticated={ auth.authenticated }
           signOutRequest={ this.props.signOutRequest }
+          editProfileHandler={ this.editProfileHandler.bind(this) }
          />
+        <EditUserModal />
         <div className='container'>
           { this.renderBody() }
         </div>
@@ -38,7 +45,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
   }
 }
 
@@ -49,7 +56,10 @@ const mapDispatchToProps = dispatch => {
     },
     signOutRequest: () => {
       dispatch(signOutRequest());
-    }
+    },
+    onEditUserModalClick: user => {
+      dispatch(toggleEditUserModal(user));
+    },
   }
 }
 
