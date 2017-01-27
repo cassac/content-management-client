@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { handleRequestError } from '../../common/actions';
 import { toggleDeleteFileModal, deleteFileSubmit } from '../actions';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import FlashMessage from '../../common/components/FlashMessage';
+import { parseFilename } from '../../../config';
 
 class DeleteFileModal extends Component {
   handleSubmit(e) {  
     e.preventDefault();
-    console.log('submitted:', e)
+    const confirm = document.querySelector('input[name=filename]').value;
+    if (confirm !== this.props.files.deleteFilename) {
+      this.props.submitError({
+        data: {
+          success: false,
+          message: 'Filenames don\'t match'
+        },
+      })
+    }
+    // need to connect user id
+    this.props.submitDelete(userId, this.props.files.deleteFileId);
   }
   render() {
     return (
@@ -17,7 +29,7 @@ class DeleteFileModal extends Component {
       >
         <form onSubmit={ this.handleSubmit.bind(this) } >
           <Modal.Header closeButton>
-            <Modal.Title>{`Delete 's account`}</Modal.Title>
+            <Modal.Title>{`Delete file "${this.props.files.deleteFilename}"`}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <p>
@@ -55,12 +67,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onModalClick: file => {
-      dispatch(toggleDeleteFileModal(file));
+    onModalClick: () => {
+      dispatch(toggleDeleteFileModal());
     },
-    submitDelete: file => {
-      dispatch(deleteFileSubmit(file));
-    }
+    submitDelete: (fileId) => {
+      dispatch(deleteFileSubmit(fileId));
+    },
+    submitError: error => dispatch(handleRequestError(error)),
   }
 }
 
