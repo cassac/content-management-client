@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-const Navigation = ({isAdmin, authenticated, signOutRequest}) => {
+const Navigation = ({isAdmin, authenticated, signOutRequest, editProfileHandler}) => {
   const renderAdmin = () => {
     if (isAdmin) {
       return (
@@ -20,7 +20,7 @@ const Navigation = ({isAdmin, authenticated, signOutRequest}) => {
           <Nav pullRight>
             { renderAdmin() }
             <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
-              <MenuItem onClick={ () => console.log('Launch Modal To Edit Profile') }>Edit Profile</MenuItem>
+              <MenuItem onClick={ editProfileHandler }>Edit Profile</MenuItem>
               <MenuItem divider />
               <LinkContainer 
                 to='/dashboard/signin'
