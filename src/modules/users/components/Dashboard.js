@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import UserBar from '../components/UserBar';
 import UserList from '../components/UserList';
-import EditUserModal from '../components/EditUserModal';
 import DeleteUserModal from '../components/DeleteUserModal';
 import FlashMessage from '../../common/components/FlashMessage';
 
@@ -21,7 +20,6 @@ const UsersDashboard = () => {
       </Grid>
       <UserBar />
       <UserList />
-      <EditUserModal />
       <DeleteUserModal />
     </div>
   )
