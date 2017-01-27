@@ -9,6 +9,8 @@ const initialState = {
   editFilename: null,
   editFileComment: null,
   deleteFileModalOpen: false,
+  deleteFileId: null,
+  deleteFilename: null,
 }
 
 const files = (state = initialState, action) => {
@@ -58,8 +60,10 @@ const files = (state = initialState, action) => {
       return {
         ...state,
         deleteFileModalOpen: !state.deleteFileModalOpen,
+        deleteFileId: action.file._id,
+        deleteFilename: parseFilename(action.file.filePath),
       }
-    case types.DELETE_USER_SUCCESS:
+    case types.DELETE_FILE_SUCCESS:
       return {
         ...state,
         results: state.results.filter(file => file._id !== action.payload._id),
