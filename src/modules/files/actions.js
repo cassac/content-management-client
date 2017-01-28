@@ -111,7 +111,7 @@ export const deleteFileSubmit = (userId, fileId) => {
         dispatch(handleRequestSuccess(response));
         dispatch({
           type: fileTypes.DELETE_FILE_SUCCESS,
-          payload: {_id: fileId},
+          payload: { fileId },
         });
         dispatch({
           type: fileTypes.DELETE_FILE_MODAL_OPEN,
