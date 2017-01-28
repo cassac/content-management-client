@@ -9,17 +9,8 @@ import { parseFilename } from '../../../config';
 class DeleteFileModal extends Component {
   handleSubmit(e) {  
     e.preventDefault();
-    const confirm = document.querySelector('input[name=filename]').value;
-    if (confirm !== this.props.files.deleteFilename) {
-      this.props.submitError({
-        data: {
-          success: false,
-          message: 'Filenames don\'t match'
-        },
-      })
-    }
-    // need to connect user id
-    this.props.submitDelete(userId, this.props.files.deleteFileId);
+    const { props } = this;
+    props.submitDelete(props.auth._id, props.files.deleteFileId);
   }
   render() {
     return (
@@ -31,18 +22,11 @@ class DeleteFileModal extends Component {
           <Modal.Header closeButton>
             <Modal.Title>{`Delete file "${this.props.files.deleteFilename}"`}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <p>
-              To confirm, type in the filename of the file to be delete
-              then submit.
-            </p>
-            <input type='text' name='filename' className='form-control'/>
-            <FlashMessage />
-          </Modal.Body>
           <Modal.Footer>
+            <FlashMessage />
             <input 
               type='submit' 
-              value='Submit' 
+              value='Confirm Delete' 
               className='btn btn-success'
               style={{'marginRight': '45px'}}
             /> 
@@ -61,6 +45,7 @@ class DeleteFileModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.auth,
     files: state.files,
   }
 }
@@ -70,8 +55,8 @@ const mapDispatchToProps = (dispatch) => {
     onModalClick: () => {
       dispatch(toggleDeleteFileModal());
     },
-    submitDelete: (fileId) => {
-      dispatch(deleteFileSubmit(fileId));
+    submitDelete: (userId, fileId) => {
+      dispatch(deleteFileSubmit(userId, fileId));
     },
     submitError: error => dispatch(handleRequestError(error)),
   }
