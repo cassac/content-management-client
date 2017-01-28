@@ -103,15 +103,19 @@ export const editFileSubmit = (userId, file) => {
   }
 }
 
-export const deleteFileSubmit = (userId, file) => {
+export const deleteFileSubmit = (userId, fileId) => {
   return dispatch => {
-    axios.delete(`api/users/${userId}/files/${file._id}`)
+    axios.delete(`api/users/${userId}/files/${fileId}`)
     .then(response => {
       if (response.data.success) {
         dispatch(handleRequestSuccess(response));
         dispatch({
           type: fileTypes.DELETE_FILE_SUCCESS,
-          payload: {_id: file._id},
+          payload: {_id: fileId},
+        });
+        dispatch({
+          type: fileTypes.DELETE_FILE_MODAL_OPEN,
+          file: {},
         });
       }
       else {
@@ -119,7 +123,7 @@ export const deleteFileSubmit = (userId, file) => {
       }
     })
     .catch(error => {
-      dispatch(handleRequestFail(response));
+      dispatch(handleRequestFail(error));
     })
   }
 }
