@@ -66,7 +66,7 @@ const files = (state = initialState, action) => {
     case types.DELETE_FILE_SUCCESS:
       return {
         ...state,
-        results: state.results.filter(file => file._id !== action.payload._id),
+        results: state.results.filter(file => file._id !== action.payload.fileId),
       }
     default: 
       return state;
