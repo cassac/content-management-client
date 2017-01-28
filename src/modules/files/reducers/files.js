@@ -68,6 +68,8 @@ const files = (state = initialState, action) => {
         ...state,
         results: state.results.filter(file => file._id !== action.payload.fileId),
       }
+    case types.RESET_STATE:
+      return initialState;
     default: 
       return state;
   }
