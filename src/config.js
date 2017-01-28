@@ -28,6 +28,11 @@ module.exports = {
   parseFileSize: (fileSize) => {
     return parseFloat(fileSize / 1000000).toFixed(3); // to MB
   },
+  parseContentType: (type) => {
+    if (!type) return '';
+    else if (type.length < 20) return type;
+    return type.substring(0, 16).concat('...');
+  },
   headerAuthToken: {
     set: () => {
       axios.defaults.headers.common['authorization'] = localStorage.token;
