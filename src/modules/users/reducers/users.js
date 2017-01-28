@@ -107,7 +107,7 @@ const users = (state = initialState, action) => {
         filterTerm: action.filterTerm,
         filteredResults: filtered
       }
-    case types.RESET_USERS_STORE:
+    case types.RESET_STATE:
       return initialState;
     default:
       return state;
