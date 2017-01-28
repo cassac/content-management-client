@@ -7,7 +7,7 @@ axios.defaults.headers.common['authorization'] = localStorage.token;
 // or `undefined`), the promise will be resolved; otherwise, the promise will be
 // rejected.
 axios.defaults.validateStatus = function (status) {
-  return status >= 200 && status < 500; 
+  return status >= 200 && status <= 500; 
 }
 
 module.exports = {
