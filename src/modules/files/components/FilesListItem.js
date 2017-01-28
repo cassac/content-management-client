@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 import { verticalAlign } from '../../../style';
-import { parseFilename, parseFileSize } from '../../../config';
+import { parseFilename, parseFileSize, parseContentType } from '../../../config';
 
 
 const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
@@ -19,7 +19,7 @@ const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
         </p>
       </Col>
       <Col xs={2}>
-        <p>{file.contentType}</p>
+        <p>{parseContentType(file.contentType)}</p>
       </Col>
       <Col xs={2}>
         <p>{parseFileSize(file.fileSize)}</p>
