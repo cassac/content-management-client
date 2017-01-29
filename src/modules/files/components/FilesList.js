@@ -23,17 +23,24 @@ class FilesList extends Component {
     // add listeners to newly created user DOM element
     attachListeners();
   }
+  renderList() {
+    const { files } = this.props;
+    if (!files.length) {
+      return <p className='pull-left' style={{marginTop: '2em'}}>No files uploaded.</p>;
+    }
+    return this.props.files.map(file => (
+      <FilesListItem 
+        key={file._id}
+        file={file}
+        onEditFileModalClick={ () => this.props.onEditFileModalClick(file) }
+        onDeleteFileModalClick={ () => this.props.onDeleteFileModalClick(file) }
+      />
+    ))
+  }
   render() {
     return(
       <Grid className='text-center'>
-        { this.props.files.map(file => (
-          <FilesListItem 
-            key={file._id}
-            file={file}
-            onEditFileModalClick={ () => this.props.onEditFileModalClick(file) }
-            onDeleteFileModalClick={ () => this.props.onDeleteFileModalClick(file) }
-          />
-        ))}
+        { this.renderList() }
       </Grid>
     )
   }
