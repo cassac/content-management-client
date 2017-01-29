@@ -4,7 +4,6 @@ import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 import { verticalAlign } from '../../../style';
 import { parseFilename, parseFileSize, parseContentType } from '../../../config';
 
-
 const FileItem = ({file, onEditFileModalClick, onDeleteFileModalClick}) => {
   return(
     <Row 
