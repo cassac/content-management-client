@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import storeConfig from './reducers';
 import App from './modules/common/components/App';
+import PageNotFound from './modules/common/components/404';
 import Signin from './modules/auth/components/Signin';
 import UsersDashboard from './modules/users/components/Dashboard';
 import UserFiles from './modules/files/components/UserFiles';
@@ -32,6 +33,10 @@ render(
         <Route 
           path='/dashboard/:userId/files' 
           component={requireAuth(UserFiles)} 
+        />
+        <Route 
+          path='*'
+          component={PageNotFound}
         />
       </Route>
     </Router>
