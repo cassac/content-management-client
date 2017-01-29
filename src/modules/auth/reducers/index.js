@@ -18,6 +18,11 @@ const auth = (state = initialState, action) => {
         authenticated: false,
         isAdmin: false,
       }
+    case types.UPDATE_AUTH:
+      return {
+        ...state,
+        ...action.payload
+      }
     default:
       return state;
   } 
