@@ -9,6 +9,7 @@ import Signin from './modules/auth/components/Signin';
 import UsersDashboard from './modules/users/components/Dashboard';
 import UserFiles from './modules/files/components/UserFiles';
 import { requireAuth } from './modules/auth/components/auth';
+import { authRedirect } from './modules/auth/components/redirect';
 
 const store = storeConfig();
 persistStore(store);
@@ -22,7 +23,7 @@ render(
       >
         <Route 
           path='/dashboard/signin' 
-          component={Signin} 
+          component={authRedirect(Signin)} 
         />
         <Route 
           path='/dashboard/users' 
