@@ -25,7 +25,7 @@ class EditUserModal extends Component {
       updatedUser.password = null;
       updatedUser.confirmPassword = null;
     }
-    this.props.submitEdit(updatedUser);
+    this.props.submitEdit(updatedUser, this.props.auth);
   }
   render() {
     const { users } = this.props;
@@ -80,6 +80,7 @@ class EditUserModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.auth,
     users: state.users,
     requests: state.requests
   }
@@ -91,8 +92,8 @@ const mapDispatchToProps = dispatch => {
     onModalClick: user => {
       dispatch(toggleEditUserModal(user));
     },
-    submitEdit: updatedUser => {
-      dispatch(editUserSubmit(updatedUser));
+    submitEdit: (updatedUser, signedInUser) => {
+      dispatch(editUserSubmit(updatedUser, signedInUser));
     }
   }
 
