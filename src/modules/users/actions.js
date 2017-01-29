@@ -1,5 +1,6 @@
 import { axios } from '../../config';
 import usersTypes from './actionTypes';
+import authTypes from '../auth/actionTypes';
 import { 
   handleRequestSuccess, 
   handleRequestError, 
@@ -69,7 +70,7 @@ export const createUserSubmit = (newUser) => {
   }
 }
 
-export const editUserSubmit = (updatedUser) => {
+export const editUserSubmit = (updatedUser, signedInUser) => {
   for (let key in updatedUser) {
     if (!updatedUser[key]) {
       delete updatedUser[key];
@@ -87,6 +88,12 @@ export const editUserSubmit = (updatedUser) => {
         dispatch({
           type: usersTypes.EDIT_USER_MODAL_OPEN
         });
+        if (response.data.results._id === signedInUser._id) {
+          dispatch({
+            type: authTypes.UPDATE_AUTH,
+            payload: response.data.results,
+          });
+        }
       }
       else {
         dispatch(handleRequestError(response));                
