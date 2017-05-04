@@ -96,11 +96,12 @@ const users = (state = initialState, action) => {
       // use filterTerm as a filter for user object values
       const filtered = state.results.filter(user => {
         for (let k in user) {
-          const value = String(user[k]);
+          const value = String(user[k])
           if (value.toLowerCase().indexOf(action.filterTerm.toLowerCase()) !== -1) {
-            return user;
+            return true
           }
         }
+        return false
       });
       return {
         ...state,
